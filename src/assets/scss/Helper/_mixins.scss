@@ -1,0 +1,56 @@
+@import "./resVariable";
+
+@mixin res_sm() {
+  @media (min-width: $res-sm) {
+    @content;
+  }
+}
+@mixin res_md() {
+  @media (min-width: $res-md) {
+    @content;
+  }
+}
+@mixin res_lg() {
+  @media (min-width: $res-lg) {
+    @content;
+  }
+}
+@mixin res_xl() {
+  @media (min-width: $res-xl) {
+    @content;
+  }
+}
+@mixin res_extra() {
+  @media (min-width: $res-extra) {
+    @content;
+  }
+}
+
+// Costume Scroll
+
+@mixin costume_scroll($scrollBarThumbColor: #000000, $scrollBarColor: #f5f5f5) {
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+    background-color: $scrollBarColor !important;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px !important;
+    background-color: $scrollBarColor !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $scrollBarThumbColor !important;
+  }
+}
+
+// Limit line text
+
+@mixin limitLineText($line: 2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line; /* number of lines to show */
+  line-clamp: $line;
+  -webkit-box-orient: vertical;
+}

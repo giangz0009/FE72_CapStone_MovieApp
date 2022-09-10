@@ -1,0 +1,106 @@
+@import "assets/scss/Helper/_variable.scss";
+@import "assets/scss/Helper/_mixins.scss";
+
+.MuiGrid2-container {
+  .MuiGrid2-root:not(:last-child) {
+    & > .MuiFormControl-root {
+      border-right: 1px solid $c-theme-border;
+      padding-right: 12px;
+
+      .MuiInput-input {
+        color: $c-theme-font;
+        font-size: 1.6rem;
+        @include limitLineText(1);
+      }
+    }
+  }
+}
+
+.MuiInputBase-root {
+  position: relative !important;
+  padding: 0 !important;
+  margin-top: 24px !important;
+  &::before {
+    display: none !important;
+  }
+  &::after {
+    display: none !important;
+  }
+  &.Mui-focused {
+    &::after {
+      transform: scaleX(1) !important;
+    }
+  }
+}
+
+.MuiAutocomplete-root {
+  margin-top: 2px !important;
+  .MuiInputBase-root {
+    padding-bottom: 0 !important;
+    margin-top: 1px !important;
+    .MuiAutocomplete-endAdornment {
+      top: calc(50% - 4px) !important;
+    }
+    input {
+      padding-block: 1.65rem !important;
+      z-index: 1 !important;
+      color: $c-theme-font;
+      font-size: 1.8rem;
+      @include limitLineText(1);
+    }
+  }
+}
+
+.MuiPaper-root {
+  max-height: 300px !important;
+  @include costume_scroll($primary-color, #f8f9fa);
+  overflow: auto !important;
+  .MuiList-root {
+    .MuiMenuItem-root {
+      justify-content: center;
+      color: $c-theme-font !important;
+      font-weight: 600 !important;
+      font-size: 1.4rem !important;
+      transition: 0.4s !important;
+      &:hover {
+        background-color: rgba($primary-color, 1) !important;
+        color: #f8f9fa !important;
+      }
+    }
+  }
+}
+
+.MuiPaper-root {
+  .MuiAutocomplete-listbox {
+    @include costume_scroll($primary-color, #f8f9fa);
+    background-color: $c-theme-bg;
+    color: $c-theme-font;
+    & .MuiAutocomplete-option {
+      font-size: 2rem;
+      transition: 0.4s;
+      padding: 0;
+      &.Mui-focused {
+        font-weight: 600;
+        color: #f8f9fa;
+        background-color: rgba($primary-color, 1) !important;
+      }
+      span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 6px 16px;
+      }
+    }
+  }
+}
+
+// Tooltip
+.MuiTooltip-tooltip {
+  margin-left: 5px !important;
+  padding: 0 !important;
+  width: auto !important;
+  border: none !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  height: 100% !important;
+}

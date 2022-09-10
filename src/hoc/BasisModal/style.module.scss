@@ -1,0 +1,29 @@
+@import "assets/scss/Helper/_variable.scss";
+
+.closeBtn {
+  border-radius: 50% !important;
+  padding: 0 !important;
+  min-width: 4rem !important;
+  min-height: 4rem !important;
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  border-color: #d8d8d8 !important;
+  border-width: 3px !important;
+  transition: 0.4s !important;
+  span {
+    margin-inline: 0;
+    svg {
+      color: #d8d8d8;
+      transition: 0.4s;
+    }
+  }
+  &:hover {
+    border-color: #d8d8d8 !important;
+    svg {
+      font-size: 3rem;
+      color: #d8d8d8 !important;
+    }
+  }
+}

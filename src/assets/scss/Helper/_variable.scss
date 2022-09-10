@@ -1,0 +1,20 @@
+@import "./theme";
+
+// Base Color
+$primary-color: rgb(250, 82, 56);
+$disable-color: rgb(74, 74, 74);
+
+// Color Theme
+$c-theme-heading: var(--heading-color);
+$c-theme-font: var(--font-color);
+$c-theme-bg: var(--bg-color);
+$c-theme-border: var(--border-color);
+$c-theme-border__light: var(--border-color-light);
+$c-theme-nav: var(--nav-color);
+$c-theme-dropdown: var(--dropdown-color);
+$transform-theme-filter: var(--iframe-filter);
+$c-theme-bg_grey: var(--bg-grey);
+$c-theme-bg_grey_light: var(--bg-lightgrey);
+$c-theme-layer: var(--layer);
+$c-theme-layer-thin: var(--layer-thin);
+$c-theme-box-shadow: var(--box-shadow);

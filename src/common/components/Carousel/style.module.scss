@@ -1,0 +1,66 @@
+@import "assets/scss/Helper/_base.scss";
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-image: linear-gradient(to top, #000, transparent 20%);
+  .shadowLayout {
+    background-color: $c-theme-layer-thin;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s;
+    .playBtn {
+      border-radius: 50%;
+      padding: 0;
+      min-width: 4rem;
+      min-height: 4rem;
+      transition: 0.6s;
+      border-color: #d8d8d8;
+      border-width: 3px;
+      @include res_md {
+        min-width: 6rem;
+        min-height: 6rem;
+      }
+      @include res_xl {
+        min-width: 8rem;
+        min-height: 8rem;
+      }
+      span {
+        margin-inline: 0;
+        svg {
+          font-size: 3rem;
+          color: #d8d8d8;
+          transition: 0.6s;
+          @include res_md {
+            font-size: 3.4rem;
+          }
+          @include res_xl {
+            font-size: 3.8rem;
+          }
+        }
+      }
+      &:hover {
+        border-color: $primary-color;
+        svg {
+          color: $primary-color;
+          font-size: 4.8rem;
+        }
+      }
+    }
+  }
+  &:hover {
+    .shadowLayout {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}

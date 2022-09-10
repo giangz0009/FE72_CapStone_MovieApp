@@ -1,0 +1,96 @@
+@import "assets/scss/Helper/_variable.scss";
+@import "assets/scss/Helper/_mixins.scss";
+
+.searchList {
+  display: none;
+  @include res_lg {
+    display: block;
+  }
+  .formWrap {
+    .formControl {
+      width: 100%;
+      height: 100%;
+      label {
+        color: $c-theme-heading;
+        font-size: 1.4rem;
+        font-weight: 500;
+      }
+      svg {
+        color: $c-theme-heading;
+      }
+      fieldset {
+        display: none;
+      }
+    }
+    .submitBtn {
+      background-color: $disable-color;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      transition: 0.4s;
+      border-radius: 8px;
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 0 10px $c-theme-box-shadow;
+      &.active {
+        background-color: $primary-color;
+        &:hover {
+          filter: opacity(0.9);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .searchToolTipWrap {
+    width: 300px;
+    height: 300px;
+    .searchToolTip {
+      position: relative;
+      background-color: #151421;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      width: 100%;
+      height: 100%;
+      .viewDetailBtn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $primary-color;
+        font-size: 1.2rem;
+        transition: 0.4s;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 1;
+        &:hover {
+          filter: brightness(0.9);
+        }
+      }
+      &::after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: $c-theme-box-shadow;
+        transition: 0.4s;
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    &:hover {
+      ::after {
+        opacity: 1;
+        visibility: visible;
+      }
+      .viewDetailBtn {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}

@@ -35,10 +35,8 @@ const HtmlTooltip = styled(({ className, ...props }) => (
 }));
 
 function SearchSelect() {
-  // Select input List
-  const [selectList, setSelectList] = useState([]);
   // Is Open state
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   // time select
   const [showTimes, setShowTimes] = useState("");
   // day Select
@@ -181,7 +179,7 @@ function SearchSelect() {
         p: 2,
         px: 3,
         backgroundColor: "var(--bg-color)",
-        borderRadius: 1,
+        borderRadius: 2,
         boxShadow: "0 0 10px var(--box-shadow)",
         maxWidth: 940,
         margin: "0 auto",

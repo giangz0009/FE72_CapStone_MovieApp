@@ -3,6 +3,7 @@
 
 .searchList {
   display: none;
+  border: 1px solid $c-theme-border;
   @include res_lg {
     display: block;
   }

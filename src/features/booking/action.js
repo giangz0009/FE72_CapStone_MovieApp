@@ -6,6 +6,7 @@ const bookingActionsType = {
   setBanners: createAction("Booking/SET_BANNERS"),
   setMoviesList: createAction("Booking/SET_MOVIES_LIST"),
   setSelectedMovie: createAction("Booking/SET_SELECTED_MOVIE"),
+  setIsMovieActive: createAction("Booking/SET_IS_MOVIE_ACTIVE"),
 };
 
 const fetchSetSelectedMovieAction = (movieId) => {

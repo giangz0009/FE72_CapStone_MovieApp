@@ -1,3 +1,3 @@
-const movieId = "GP10";
+const movieId = "GP07";
 
 export { movieId };

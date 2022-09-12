@@ -1,0 +1,24 @@
+@import "assets/scss/Helper/_variable.scss";
+
+.MuiPagination-root {
+  margin-top: 1.6rem;
+  .MuiPagination-ul {
+    justify-content: center;
+    .MuiButtonBase-root {
+      font-size: 1.4rem !important;
+      border: 1px solid $c-theme-border !important;
+      color: $c-theme-font !important;
+      box-shadow: 0 0 6px $c-theme-box-shadow !important;
+      &.Mui-selected {
+        border: none !important;
+        color: #f8f9fa !important;
+        background-color: $primary-color !important;
+      }
+      &:hover {
+        border: none !important;
+        color: #f8f9fa !important;
+        background-color: $primary-color !important;
+      }
+    }
+  }
+}

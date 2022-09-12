@@ -9,8 +9,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import "./globalStyle.scss";
 import style from "./style.module.scss";
+import "./globalStyle.scss";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
@@ -50,8 +50,8 @@ export default function Carousel() {
           clickable: true,
         }}
         navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        modules={[Pagination, Navigation]}
+        className="carousel"
       >
         {banners.map((banner) => (
           <SwiperSlide

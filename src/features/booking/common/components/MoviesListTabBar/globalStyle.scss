@@ -1,0 +1,9 @@
+@import "assets/scss/Helper/_variable.scss";
+
+.Mui-selected {
+  color: $primary-color !important;
+}
+
+.MuiTabs-indicator {
+  background-color: $primary-color !important;
+}

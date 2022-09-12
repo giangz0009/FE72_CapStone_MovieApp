@@ -48,7 +48,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar id={style.header} position="static">
+    <AppBar id={style.header} position="fixed">
       <CssBaseline />
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>

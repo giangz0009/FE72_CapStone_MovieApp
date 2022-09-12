@@ -1,0 +1,54 @@
+@import "assets/scss/Helper/_variable.scss";
+@import "assets/scss/Helper/_mixins.scss";
+
+.movieItem {
+  box-shadow: 0 0 10px $c-theme-box-shadow;
+  border: 1px solid $c-theme-border;
+  background-color: $c-theme-bg;
+  .movieImage {
+    width: 100%;
+    height: 200px;
+    background-color: #151421;
+    background-size: 80% 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid $c-theme-border;
+  }
+  .movieContent {
+    .movieName {
+      font-size: 1.6rem;
+      color: $c-theme-heading;
+      font-weight: 500;
+      .movieTitle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p {
+          font-size: 1.6rem;
+          height: 40px;
+          @include limitLineText();
+        }
+        .movieHotState {
+          display: inline-block;
+          font-size: 1.4rem;
+          background-color: $primary-color;
+          color: #f8f9fa;
+          border-radius: 0.4rem;
+          padding: 0.2rem 0.6rem;
+        }
+      }
+
+      .movieInfo {
+        margin-top: 1.6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span.movieTimes {
+          font-size: 1.4rem;
+          color: $c-theme-font;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}

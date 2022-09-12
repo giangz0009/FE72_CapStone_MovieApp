@@ -65,6 +65,9 @@
       &:hover {
         background-color: rgba($primary-color, 1) !important;
         color: #f8f9fa !important;
+        p {
+          color: #f8f9fa !important;
+        }
       }
     }
   }

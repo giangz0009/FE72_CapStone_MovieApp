@@ -1,0 +1,10 @@
+@import "assets/scss/Helper/_variable.scss";
+
+.tab {
+  background-color: transparent;
+  button {
+    padding-block: 32px;
+    font-size: 1.6rem;
+    color: $c-theme-heading;
+  }
+}

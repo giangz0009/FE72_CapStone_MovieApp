@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
-import { Container, CssBaseline } from "@mui/material";
+import { Container, CssBaseline, Box } from "@mui/material";
 
 import Carousel from "common/components/Carousel";
 import SearchSelect from "features/booking/common/components/SearchSelect";
 import { fetchSetMoviesListAction } from "features/booking/action";
 import { useDispatch } from "react-redux";
+import MoviesListTabBar from "features/booking/common/components/MoviesListTabBar";
+import MoviesList from "features/booking/common/components/MoviesList";
 
 function Home() {
   // useDispatch
@@ -12,15 +14,20 @@ function Home() {
   // useEffect
   useEffect(() => {
     dispatch(fetchSetMoviesListAction);
-  }, [dispatch]);
+  }, []);
   return (
     <div>
       <CssBaseline />
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative", marginTop: 64 }}>
         <Carousel />
         <SearchSelect />
       </div>
-      <Container maxWidth="lg"></Container>
+      <Container maxWidth="lg">
+        <Box>
+          <MoviesListTabBar />
+          <MoviesList style={{ paddingBlock: 3 }} />
+        </Box>
+      </Container>
     </div>
   );
 }

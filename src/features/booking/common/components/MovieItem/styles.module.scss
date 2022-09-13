@@ -2,7 +2,7 @@
 @import "assets/scss/Helper/_mixins.scss";
 
 .movieItem {
-  box-shadow: 0 0 10px $c-theme-box-shadow;
+  box-shadow: 0 0 20px $c-theme-box-shadow;
   border: 1px solid $c-theme-border;
   background-color: $c-theme-bg;
   .movieImage {
@@ -13,20 +13,20 @@
     background-position: center;
     background-repeat: no-repeat;
     border-bottom: 1px solid $c-theme-border;
+    transition: 0.4s;
   }
   .movieContent {
     .movieName {
-      font-size: 1.6rem;
-      color: $c-theme-heading;
-      font-weight: 500;
       .movieTitle {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
         p {
+          font-weight: 600;
           font-size: 1.6rem;
           height: 40px;
           @include limitLineText();
+          color: $primary-color;
         }
         .movieHotState {
           display: inline-block;
@@ -45,10 +45,15 @@
         align-items: center;
         span.movieTimes {
           font-size: 1.4rem;
-          color: $c-theme-font;
+          color: #100f19;
           font-weight: 400;
         }
       }
+    }
+  }
+  &:hover {
+    .movieImage {
+      background-size: 90% 100%;
     }
   }
 }

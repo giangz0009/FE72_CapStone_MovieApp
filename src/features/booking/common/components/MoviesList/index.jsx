@@ -9,9 +9,11 @@ import { useState } from "react";
 import lodashIsEmpty from "lodash.isempty";
 
 import Loading from "common/components/Loading";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function MoviesList({ style }) {
+  // useNavigate
+  const navigate = useNavigate();
   // Location
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -32,6 +34,8 @@ export default function MoviesList({ style }) {
   // useEffect
 
   useEffect(() => {
+    navigate("/", { replace: true });
+
     const res = updateMoviesList();
     const { movieFilterByType, movieShowForPage } = res;
 
@@ -69,9 +73,9 @@ export default function MoviesList({ style }) {
     );
 
     const movieSortByTrending = movieFilterByType?.sort((a, b) => {
-      const res = a.hot && b.hot;
-      if (res) return 1;
-      return -1;
+      const res = a.hot;
+      if (res) return -1;
+      return 1;
     });
 
     const movieShowForPage = movieSortByTrending?.slice(

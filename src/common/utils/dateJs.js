@@ -1,4 +1,4 @@
-import { format, parseISO } from "date-fns";
+import { add, format, parseISO } from "date-fns";
 import { enGB, vi } from "date-fns/locale";
 
 const locales = { enGB, vi };
@@ -28,10 +28,16 @@ const dateTime = (date) => {
     return res;
   };
 
+  const addHours = (hours) => {
+    const res = formatCostume(add(parseDate, { hours: hours }), "kk:m");
+    return res;
+  };
+
   return {
     getDateMonth,
     getDayOfWeek,
     getDateTime,
+    addHours,
   };
 };
 

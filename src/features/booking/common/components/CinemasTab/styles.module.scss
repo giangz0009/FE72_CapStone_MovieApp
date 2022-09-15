@@ -1,0 +1,175 @@
+@import "assets/scss/Helper/_variable.scss";
+@import "assets/scss/Helper/_mixins.scss";
+
+.cinemasWrapTab {
+  background-color: $c-theme-bg;
+  border: 1px solid $c-theme-border__light;
+  box-shadow: 0 0 10px $c-theme-box-shadow;
+  border-radius: 8px;
+  margin-block: 4rem;
+  .cinemasBrandTab {
+    border-right: 1px solid $c-theme-border__light !important;
+    .cinemasBrandTabItem {
+      opacity: 0.7;
+      transition: 0.4s;
+      border-bottom: 1px solid $c-theme-border__light;
+      &:last-child {
+        border-bottom: none;
+      }
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        object-position: center;
+        transition: 0.4s;
+      }
+      &:hover {
+        opacity: 1;
+        img {
+          transform: scale(1.2);
+        }
+      }
+      &.cinemasBrandTabItemActive {
+        opacity: 1;
+      }
+    }
+  }
+  .cinemasTab {
+    .cinemasTabItem {
+      opacity: 0.7;
+      transition: 0.4s;
+      border-bottom: 1px solid $c-theme-border__light;
+      &:last-child {
+        border-bottom: none;
+      }
+      &.cinemasTabItemActive {
+        opacity: 1;
+      }
+      .cinemasItemTabWrap {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        img {
+          width: 60px;
+          height: 60px;
+          object-fit: cover;
+          object-position: center;
+        }
+        .cinemasItemInfo {
+          display: flex;
+          flex-direction: column;
+          padding-left: 1rem;
+          .cinemasItemName {
+            display: flex;
+            align-items: center;
+            h3 {
+              font-size: 1.4rem;
+              color: $primary-color;
+            }
+            span {
+              font-size: 1.2rem;
+              font-weight: 600;
+              color: $c-theme-font;
+              display: inline-block;
+              padding-left: 0.5rem;
+              flex: 1;
+              text-align: left;
+              @include limitLineText(1);
+            }
+          }
+          .cinemasItemAddress {
+            color: $c-theme-font;
+            opacity: 0.8;
+            font-weight: 500;
+            text-align: left;
+            @include limitLineText(1);
+          }
+        }
+      }
+    }
+  }
+  .movieSchedules {
+    flex: 1;
+    height: 100%;
+    overflow: auto;
+    @include costume_scroll();
+    .movieScheduleItem {
+      padding-block: 1rem;
+      position: relative;
+      border-bottom: 1px solid $c-theme-border__light;
+      &:last-child {
+        border-bottom: none;
+      }
+      &.movieScheduleItemHot {
+        position: relative;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          content: "Hot";
+          padding: 0.4rem 1.2rem;
+          color: #f8f9fa;
+          font-weight: 600;
+          font-size: 1.2rem;
+          background-color: $primary-color;
+          border-radius: 0.4rem;
+        }
+      }
+      .movieScheduleInfo {
+        display: flex;
+        align-items: center;
+        img {
+          width: 8rem;
+          height: 8rem;
+          object-fit: cover;
+          object-position: center;
+        }
+        div {
+          margin-left: 1.8rem;
+          h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: $c-theme-heading;
+          }
+          span {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: $c-theme-font;
+            opacity: 0.8;
+          }
+        }
+      }
+      .movieScheduleDate {
+        margin-top: 1rem;
+        .movieScheduleShowTime {
+          margin-top: 1rem;
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          .movieScheduleShowTimeBtn {
+            margin-inline: 0.6rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            border: 1px solid $primary-color;
+            color: $primary-color;
+            font-size: 1.4rem;
+            transition: 0.4s;
+            &:hover {
+              background-color: $primary-color;
+              color: #f8f9fa;
+            }
+            span {
+              display: inline-flex;
+              align-items: center;
+              margin-left: 0.6rem;
+              color: $c-theme-font;
+              font-size: 1rem;
+              opacity: 0.6;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@import "assets/scss/Helper/_variable.scss";
+
+.MuiFormControl-root.movieScheduleDateSelectForm {
+  .MuiInputBase-root {
+    #movieScheduleSelect {
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: $c-theme-font;
+    }
+    .MuiOutlinedInput-notchedOutline {
+      border: 1px solid $c-theme-border;
+    }
+  }
+}
+
+.MuiMenuItem-root.movieScheduleDateMenuItem.Mui-selected {
+  background-color: #fa5238 !important;
+  color: #f8f9fa !important;
+}
+
+// .cinemasWrapTab {
+//   .MuiTabs-indicator {
+//     display: none;
+//   }
+// }

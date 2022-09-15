@@ -7,6 +7,7 @@ const bookingActionsType = {
   setMoviesList: createAction("Booking/SET_MOVIES_LIST"),
   setSelectedMovie: createAction("Booking/SET_SELECTED_MOVIE"),
   setIsMovieActive: createAction("Booking/SET_IS_MOVIE_ACTIVE"),
+  setCinemasBrandList: createAction("Booking/SET_CINEMAS_BRAND_LIST"),
 };
 
 const fetchSetSelectedMovieAction = (movieId) => {
@@ -42,8 +43,22 @@ const fetchSetMoviesListAction = async (dispatch) => {
   }
 };
 
+const fetchSetCinemasBrandListAction = async (dispatch) => {
+  try {
+    const res = await instance.request({
+      url: "/api/QuanLyRap/LayThongTinHeThongRap",
+      method: "GET",
+    });
+
+    dispatch(bookingActionsType.setCinemasBrandList(res.data.content));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export {
   bookingActionsType,
   fetchSetSelectedMovieAction,
   fetchSetMoviesListAction,
+  fetchSetCinemasBrandListAction,
 };

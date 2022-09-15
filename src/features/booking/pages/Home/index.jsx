@@ -7,6 +7,7 @@ import { fetchSetMoviesListAction } from "features/booking/action";
 import { useDispatch } from "react-redux";
 import MoviesListTabBar from "features/booking/common/components/MoviesListTabBar";
 import MoviesList from "features/booking/common/components/MoviesList";
+import CinemasTab from "features/booking/common/components/CinemasTab";
 
 function Home() {
   // useDispatch
@@ -27,6 +28,7 @@ function Home() {
           <MoviesListTabBar />
           <MoviesList style={{ paddingBlock: 3 }} />
         </Box>
+        <CinemasTab />
       </Container>
     </div>
   );

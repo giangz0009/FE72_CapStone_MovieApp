@@ -8,10 +8,14 @@ const initialState = {
   isMovieActive: true,
   moviesShowByActiveTypeList: null,
   selectedMovie: null,
+  cinemasBrandList: null,
 };
 
 const bookingReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(bookingActionsType.setCinemasBrandList, (state, action) => {
+      state.cinemasBrandList = action.payload;
+    })
     .addCase(bookingActionsType.setIsMovieActive, (state, action) => {
       state.isMovieActive = action.payload;
     })

@@ -3,7 +3,7 @@
 
 .movieItem {
   box-shadow: 0 0 20px $c-theme-box-shadow;
-  border: 1px solid $c-theme-border;
+  border: 1px solid $c-theme-border__light;
   background-color: $c-theme-bg;
   .movieImage {
     width: 100%;
@@ -12,10 +12,11 @@
     background-size: 80% 90%;
     background-position: center;
     background-repeat: no-repeat;
-    border-bottom: 1px solid $c-theme-border;
+    border-bottom: 1px solid $c-theme-border__light;
     transition: 0.4s;
   }
   .movieContent {
+    background-color: $c-theme-bg;
     .movieName {
       .movieTitle {
         display: flex;
@@ -45,7 +46,7 @@
         align-items: center;
         span.movieTimes {
           font-size: 1.4rem;
-          color: #100f19;
+          color: $c-theme-font;
           font-weight: 400;
         }
       }

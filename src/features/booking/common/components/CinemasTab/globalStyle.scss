@@ -3,6 +3,7 @@
 .MuiFormControl-root.movieScheduleDateSelectForm {
   .MuiInputBase-root {
     #movieScheduleSelect {
+      border: 1px solid $c-theme-border__light;
       display: flex;
       align-items: center;
       font-size: 1.6rem;

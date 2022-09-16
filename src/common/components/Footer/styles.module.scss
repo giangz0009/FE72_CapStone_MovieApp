@@ -1,0 +1,95 @@
+@import "assets/scss/Helper/_variable.scss";
+
+.footer {
+  background-color: $c-theme-bg;
+  border-top: 1px solid $c-theme-border__light;
+  padding-block: 2rem;
+  .footerITem {
+    img {
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    & > img {
+      height: fit-content;
+    }
+
+    a {
+      display: block;
+      color: $c-theme-font;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: 0.4s;
+      padding-block: 0.6rem;
+      &:hover {
+        text-decoration: underline;
+        opacity: 0.8;
+      }
+    }
+    p {
+      font-size: 1.4rem;
+      color: $primary-color;
+      font-weight: 600;
+      margin-block: 0;
+    }
+    &.footerItemLogoImg {
+      flex-wrap: wrap;
+      p {
+        width: 100%;
+      }
+      a {
+        flex-basis: 20%;
+        opacity: 1;
+        img {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 50%;
+        }
+      }
+    }
+    &.footerItemMobileApp {
+      .footerMobileAppItem {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        p {
+          width: 100%;
+          text-align: center;
+          height: 40px;
+        }
+        a {
+          opacity: 1;
+          flex-basis: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          svg {
+            font-size: 4.5rem;
+          }
+          img {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+    &.footerCompanyInfo {
+      p {
+        color: $c-theme-font;
+        font-weight: 400;
+        a {
+          display: inline-block;
+          font-size: 1.4rem;
+          color: $primary-color;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

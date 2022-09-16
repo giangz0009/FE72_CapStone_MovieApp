@@ -6,6 +6,7 @@ import Header from "common/components/Header";
 import "./App.css";
 import PageLoading from "common/components/PageLoading";
 import { appActionTypes } from "./actions";
+import Footer from "common/components/Footer";
 
 // Route Components
 const Home = lazy(() => import("features/booking/pages/Home"));
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/signUp" element={<SignUp />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+        <Footer />
       </Suspense>
     </div>
   );

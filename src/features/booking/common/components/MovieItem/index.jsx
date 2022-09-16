@@ -10,18 +10,14 @@ import BasicRating from "common/components/BasisRaing";
 import "./globalStyle.scss";
 
 export default function MovieItem({ movie }) {
-  const renderHotComp = (isHotState) => {
-    return isHotState ? (
-      <Box component="span" className={styles.movieHotState}>
-        Hot
-      </Box>
-    ) : (
-      ""
-    );
-  };
-
   return (
-    <Card className={styles.movieItem + " movieItem"}>
+    <Card
+      className={
+        styles.movieItem +
+        " movieItem " +
+        (movie.hot ? styles.movieItemHotState : "")
+      }
+    >
       <CardActionArea>
         <Box
           className={styles.movieImage}
@@ -36,7 +32,6 @@ export default function MovieItem({ movie }) {
           >
             <Box className={styles.movieTitle}>
               <p>{movie.tenPhim}</p>
-              {renderHotComp(movie.hot)}
             </Box>
 
             <Box className={styles.movieInfo}>

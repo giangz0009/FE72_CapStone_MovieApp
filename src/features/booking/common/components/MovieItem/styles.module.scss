@@ -5,6 +5,23 @@
   box-shadow: 0 0 20px $c-theme-box-shadow;
   border: 1px solid $c-theme-border__light;
   background-color: $c-theme-bg;
+  &.movieItemHotState {
+    position: relative;
+    &::after {
+      content: "Hot";
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: inline-block;
+      font-size: 1.4rem;
+      width: 3.5rem;
+      height: 2.3rem;
+      background-color: $primary-color;
+      color: #f8f9fa;
+      border-radius: 0.4rem;
+      padding: 0.2rem 0.6rem;
+    }
+  }
   .movieImage {
     width: 100%;
     height: 200px;
@@ -29,14 +46,6 @@
           @include limitLineText();
           color: $primary-color;
         }
-        .movieHotState {
-          display: inline-block;
-          font-size: 1.4rem;
-          background-color: $primary-color;
-          color: #f8f9fa;
-          border-radius: 0.4rem;
-          padding: 0.2rem 0.6rem;
-        }
       }
 
       .movieInfo {
@@ -44,6 +53,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
         span.movieTimes {
           font-size: 1.4rem;
           color: $c-theme-font;

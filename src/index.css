@@ -1,5 +1,6 @@
 * {
   font-size: 62.5%;
+  box-sizing: border-box !important;
 }
 
 body {
@@ -9,7 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--bg-color) !important;
+  background-color: var(--bg-grey) !important;
   /* 1rem = 10px */
 }
 

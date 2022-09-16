@@ -61,7 +61,7 @@ export default function MoviesList({ style }) {
     if (lodashIsEmpty(moviesShow)) return <Loading />;
 
     return moviesShow.map((movie) => (
-      <Grid xs={3} key={movie.maPhim}>
+      <Grid xs={6} sm={4} md={3} key={movie.maPhim}>
         <MovieItem movie={movie} />
       </Grid>
     ));

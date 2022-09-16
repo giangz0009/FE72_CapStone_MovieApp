@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import MoviesListTabBar from "features/booking/common/components/MoviesListTabBar";
 import MoviesList from "features/booking/common/components/MoviesList";
 import CinemasTab from "features/booking/common/components/CinemasTab";
+import NewsList from "features/booking/common/components/NewsList";
 
 function Home() {
   // useDispatch
@@ -29,6 +30,7 @@ function Home() {
           <MoviesList style={{ paddingBlock: 3 }} />
         </Box>
         <CinemasTab />
+        <NewsList />
       </Container>
     </div>
   );

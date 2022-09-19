@@ -1,0 +1,92 @@
+@import "assets/scss/Helper/_variable.scss";
+@import "assets/scss/Helper/_mixins.scss";
+
+.cinemasAccordion {
+  @include costume_scroll();
+  overflow: auto;
+  .cinemasItem {
+    background-color: $c-theme-bg !important;
+    border-bottom: 1px solid $c-theme-border__light;
+    max-height: none !important;
+    overflow: unset !important;
+    &:last-child {
+      border-bottom: none;
+    }
+    .cinemasItemWrap {
+      display: flex;
+      img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        object-position: center;
+      }
+      .cinemasItemInfo {
+        margin-left: 0.8rem;
+        .cinemasItemName {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          h3 {
+            margin-block: 0;
+            font-size: 1.2rem;
+            color: $primary-color;
+          }
+          span {
+            margin-left: 0.6rem;
+            flex: 1;
+            font-size: 1rem;
+            color: $c-theme-font;
+            @include limitLineText(1);
+          }
+        }
+        p {
+          color: $c-theme-font;
+          font-size: 1rem;
+          @include limitLineText(1);
+        }
+      }
+    }
+    .movieSchedules {
+      padding-left: 2.4rem;
+      .movieScheduleItem {
+        max-height: none !important;
+        background-color: $c-theme-bg !important;
+        margin-block: -20px;
+        .movieScheduleItemWrap {
+          display: flex;
+          img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            object-position: center;
+          }
+          .movieScheduleInfo {
+            margin-left: 0.8rem;
+            h3 {
+              font-size: 1rem;
+              color: $primary-color;
+              margin-block: 0;
+            }
+            p {
+              font-size: 1rem;
+              color: $c-theme-font;
+            }
+          }
+        }
+      }
+      .movieScheduleDate {
+        .movieScheduleShowTime {
+          .movieScheduleShowTimeBtn {
+            border: 1px solid $primary-color;
+            color: $primary-color;
+            margin: 0.4rem;
+            span {
+              color: $c-theme-font;
+              margin-left: 0.6rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

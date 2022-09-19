@@ -1,4 +1,5 @@
 @import "assets/scss/Helper/_variable.scss";
+@import "assets/scss/Helper/_mixins.scss";
 
 .MuiFormControl-root.movieScheduleDateSelectForm {
   .MuiInputBase-root {
@@ -21,8 +22,9 @@
   color: #f8f9fa !important;
 }
 
-// .cinemasWrapTab {
-//   .MuiTabs-indicator {
-//     display: none;
-//   }
-// }
+.cinemasWrapTab {
+  .MuiButtonBase-root.MuiTab-root {
+    min-width: auto;
+    padding: 1.2rem 1.6rem;
+  }
+}

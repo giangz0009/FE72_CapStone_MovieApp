@@ -5,31 +5,37 @@ import {
   Box,
   Toolbar,
   IconButton,
-  Typography,
   Menu,
   Container,
-  MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
+import { Link } from "react-scroll";
+
 import "app/GlobalCssSlider.scss";
+
 import style from "./style.module.scss";
+
 import Logo from "../Logo";
 import Navigation from "../Navigation";
 import Authentication from "./Authentication";
 import Theme from "./Theme";
 
-const pages = ["Lịch chiếu", "Cụm rạp", "Tin tức", "Ứng dụng"];
 const accountSettings = [
   { title: "Sign In", path: "/signIn" },
   { title: "Sign Up", path: "/signUp" },
 ];
 
 const Header = () => {
+  const pages = [
+    { label: "Lịch chiếu", idHomeSection: "moviesListTabBar" },
+    { label: "Cụm rạp", idHomeSection: "cinemasTab" },
+    { label: "Tin tức", idHomeSection: "newsList" },
+  ];
+
   // Use State
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [activeNav, setActiveNav] = useState(0);
 
   // Handle Event
   const handleOpenNavMenu = (event) => {
@@ -77,6 +83,7 @@ const Header = () => {
             </IconButton>
             <Menu
               id="menu-appbar"
+              className="App-navigation"
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "bottom",
@@ -99,13 +106,20 @@ const Header = () => {
               }}
             >
               {pages.map((page, index) => (
-                <MenuItem
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  selected={index === activeNav}
-                >
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+                <li key={index} className={style.navLinkItem}>
+                  <Link
+                    activeClass={style.navLinkActive}
+                    className={style.navLink}
+                    to={page.idHomeSection}
+                    spy={true}
+                    smooth={true}
+                    offset={-30}
+                    duration={500}
+                    onClick={handleCloseNavMenu}
+                  >
+                    {page.label}
+                  </Link>
+                </li>
               ))}
             </Menu>
           </Box>
@@ -130,11 +144,7 @@ const Header = () => {
               width: { md: 500, lg: 600 },
             }}
           >
-            <Navigation
-              activeNav={activeNav}
-              setActiveNav={setActiveNav}
-              pages={pages}
-            />
+            <Navigation pages={pages} />
           </Box>
 
           {/* Theme & authentication */}

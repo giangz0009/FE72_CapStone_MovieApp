@@ -1,22 +1,31 @@
 import React from "react";
-import { BottomNavigation, BottomNavigationAction } from "@mui/material";
+
+import { Box } from "@mui/material";
+
+import { Link } from "react-scroll";
 
 import "app/GlobalCssSlider.scss";
+import styles from "./style.module.scss";
+import clsx from "clsx";
 
-function Navigation({ activeNav, setActiveNav, pages }) {
-  // useState
-
+function Navigation({ pages }) {
   return (
-    <BottomNavigation
-      showLabels
-      value={activeNav}
-      onChange={(event, newValue) => setActiveNav(newValue)}
-      sx={{ width: "100%" }}
-    >
-      {pages.map((page) => (
-        <BottomNavigationAction label={page} key={page} />
+    <Box className={styles.navBar}>
+      {pages.map((page, index) => (
+        <Link
+          activeClass={styles.navLinkActive}
+          key={index}
+          className={clsx(styles.navLink)}
+          to={page.idHomeSection}
+          spy={true}
+          smooth={true}
+          offset={-30}
+          duration={500}
+        >
+          {page.label}
+        </Link>
       ))}
-    </BottomNavigation>
+    </Box>
   );
 }
 

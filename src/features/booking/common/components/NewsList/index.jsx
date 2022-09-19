@@ -2,7 +2,6 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 import "./globalStyle.scss";
@@ -100,36 +99,38 @@ export default function NewsList() {
   };
 
   return (
-    <Box sx={{ width: "100%" }} id="news">
-      <Box className="newsTabsListWrap">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-          className="tabsList"
-        >
-          {tabsList.map((tab, index) => (
-            <Tab
-              className="tabItem"
-              key={index}
-              label={tab}
-              {...a11yProps(index)}
-            />
-          ))}
-        </Tabs>
+    <Box id="newsList">
+      <Box sx={{ width: "100%" }} id="news">
+        <Box className="newsTabsListWrap">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+            className="tabsList"
+          >
+            {tabsList.map((tab, index) => (
+              <Tab
+                className="tabItem"
+                key={index}
+                label={tab}
+                {...a11yProps(index)}
+              />
+            ))}
+          </Tabs>
+        </Box>
+        <TabPanel className="tabPanel" value={value} index={0}>
+          <PriNews data={priNewsList[0]} />
+          <SubNews />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <PriNews data={priNewsList[1]} />
+          <SubNews />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <PriNews data={priNewsList[2]} />
+          <SubNews />
+        </TabPanel>
       </Box>
-      <TabPanel className="tabPanel" value={value} index={0}>
-        <PriNews data={priNewsList[0]} />
-        <SubNews />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <PriNews data={priNewsList[1]} />
-        <SubNews />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <PriNews data={priNewsList[2]} />
-        <SubNews />
-      </TabPanel>
     </Box>
   );
 }

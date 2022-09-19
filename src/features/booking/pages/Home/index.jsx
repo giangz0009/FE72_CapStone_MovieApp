@@ -25,7 +25,7 @@ function Home() {
         <SearchSelect />
       </div>
       <Container maxWidth="lg">
-        <Box>
+        <Box id="moviesListTabBar" sx={{ pb: 5, pt: 3 }}>
           <MoviesListTabBar />
           <MoviesList style={{ paddingBlock: 3 }} />
         </Box>

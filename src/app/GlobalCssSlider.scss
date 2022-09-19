@@ -36,3 +36,28 @@
     }
   }
 }
+
+#menu-appbar.App-navigation {
+  .MuiList-root {
+    & > div[data-nav="list"] {
+      ul {
+        padding-left: 0;
+        li {
+          display: block;
+          a {
+            text-align: center;
+            padding-block: 0.6rem;
+            display: block;
+            font-size: 1.6rem;
+            color: $c-theme-font;
+            text-decoration: none;
+            &.active {
+              background-color: $primary-color;
+              color: #f8f9fa;
+            }
+          }
+        }
+      }
+    }
+  }
+}

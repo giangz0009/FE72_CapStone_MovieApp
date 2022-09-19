@@ -1,0 +1,19 @@
+@import "assets/scss/Helper/_variable.scss";
+
+.cinemasItem.MuiAccordion-root {
+  .MuiAccordionSummary-expandIconWrapper {
+    color: $c-theme-font;
+  }
+
+  .MuiInputBase-formControl {
+    margin-top: 0 !important;
+    margin-bottom: 0.8rem;
+    .MuiSelect-select {
+      font-size: 1.1rem !important;
+    }
+  }
+}
+
+.MuiPaper-root .MuiList-root .MuiMenuItem-root.movieScheduleDateMenuItem {
+  font-size: 1.1rem !important;
+}

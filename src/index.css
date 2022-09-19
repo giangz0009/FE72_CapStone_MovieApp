@@ -12,6 +12,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-grey) !important;
   /* 1rem = 10px */
+  width: 100%;
+  overflow-x: hidden;
 }
 
 code {

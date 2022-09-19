@@ -24,7 +24,7 @@ function MoviesListTabBar() {
   }, [value]);
 
   return (
-    <Box sx={{ width: "100%", mt: 7 }}>
+    <Box sx={{ width: "100%", mt: 5 }}>
       <Tabs
         className={style.tab}
         value={value}

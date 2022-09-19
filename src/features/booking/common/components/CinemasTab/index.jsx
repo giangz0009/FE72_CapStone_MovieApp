@@ -25,6 +25,8 @@ import instance from "app/instance";
 import { useCallback } from "react";
 import { movieId } from "app/constants";
 import dateTime from "common/utils/dateJs";
+import useWindowDimensions from "common/hooks/useWindowDimension";
+import CinemasAccordion from "../CinemasAccordion";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -53,6 +55,8 @@ TabPanel.propTypes = {
 };
 
 export default function CinemasTab() {
+  const { width } = useWindowDimensions();
+
   // CinemasBrandTab
   const [cinemasBrandValue, setCinemasBrandValue] = useState(0);
   const cinemasBrandData = useSelector(
@@ -74,6 +78,8 @@ export default function CinemasTab() {
 
   // handle onchange cinemasBrandValue & cinemasBrandData
   useEffect(() => {
+    setCinemasData([]);
+
     if (lodashIsEmpty(cinemasBrandData)) return;
     setCinemasValue(0);
 
@@ -88,6 +94,8 @@ export default function CinemasTab() {
 
   // Handle onchange cinemasValue & cinemasData
   useEffect(() => {
+    setMovieScheduleData([]);
+
     if (lodashIsEmpty(cinemasData)) return;
 
     const cloneCinemasData = [...cinemasData];
@@ -181,7 +189,7 @@ export default function CinemasTab() {
       );
     };
 
-    if (!cinemasData) return <Loading />;
+    if (lodashIsEmpty(cinemasData)) return <Loading />;
 
     return cinemasData.map((cinema, index) => (
       <Tab
@@ -202,16 +210,6 @@ export default function CinemasTab() {
         }
       />
     ));
-  };
-
-  // other functions
-
-  const handleChangeSelectMovieScheduleDate = (event, index) => {
-    setMovieScheduleData((preState) => {
-      preState[index].lstLichChieuTheoNgay.selectedDate = event.target.value;
-
-      return [...preState];
-    });
   };
 
   const renderMovieSchedulesTab = () => {
@@ -277,33 +275,57 @@ export default function CinemasTab() {
     });
   };
 
+  const renderResponsive = () => {
+    if (width > 770)
+      return (
+        <>
+          <BasicVerticalTab
+            value={cinemasValue}
+            setValue={cBSetCinemasValue}
+            className={styles.cinemasTab}
+          >
+            {renderCinemasTab()}
+          </BasicVerticalTab>
+          {/* MovieSchedules Tab */}
+          <Box className={styles.movieSchedules}>
+            {renderMovieSchedulesTab()}
+          </Box>
+        </>
+      );
+
+    return <CinemasAccordion cinemasData={cinemasData} />;
+  };
+
+  // other functions
+
+  const handleChangeSelectMovieScheduleDate = (event, index) => {
+    setMovieScheduleData((preState) => {
+      preState[index].lstLichChieuTheoNgay.selectedDate = event.target.value;
+
+      return [...preState];
+    });
+  };
+
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        display: "flex",
-        height: 400,
-      }}
-      className={styles.cinemasWrapTab + " cinemasWrapTab"}
-    >
-      {/* CinemasBrandList Tab */}
-      <BasicVerticalTab
-        value={cinemasBrandValue}
-        setValue={cBSetCinemasBrandValue}
-        className={styles.cinemasBrandTab}
+    <Box id="cinemasTab" className={styles.cinemasTabContainer}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          height: 400,
+        }}
+        className={styles.cinemasWrapTab + " cinemasWrapTab"}
       >
-        {renderCinemasBrandTab()}
-      </BasicVerticalTab>
-      {/* Cinemas Tab */}
-      <BasicVerticalTab
-        value={cinemasValue}
-        setValue={cBSetCinemasValue}
-        className={styles.cinemasTab}
-      >
-        {renderCinemasTab()}
-      </BasicVerticalTab>
-      {/* MovieSchedules Tab */}
-      <Box className={styles.movieSchedules}>{renderMovieSchedulesTab()}</Box>
+        {/* CinemasBrandList Tab */}
+        <BasicVerticalTab
+          value={cinemasBrandValue}
+          setValue={cBSetCinemasBrandValue}
+          className={styles.cinemasBrandTab}
+        >
+          {renderCinemasBrandTab()}
+        </BasicVerticalTab>
+        {renderResponsive()}
+      </Box>
     </Box>
   );
 }

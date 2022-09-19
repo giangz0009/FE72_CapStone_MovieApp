@@ -1,22 +1,23 @@
 @import "assets/scss/Helper/_variable.scss";
 
-#news.MuiBox-root {
-  background-color: $c-theme-bg;
-  border-radius: 0.8rem;
-  border: 1px solid $c-theme-border__light;
-  margin-top: 9rem;
-  margin-bottom: 4rem;
-  .newsTabsListWrap.MuiBox-root {
-    .MuiTabs-root.tabsList {
-      .MuiTabs-flexContainer {
-        justify-content: center;
-        .MuiButtonBase-root.tabItem {
-          font-size: 1.6rem;
-          font-weight: 500;
-          transition: 0.4s;
-          color: $c-theme-font;
-          &:hover {
-            transform: scale(1.1);
+#newsList {
+  padding-block: 4rem;
+  #news.MuiBox-root {
+    background-color: $c-theme-bg;
+    border-radius: 0.8rem;
+    border: 1px solid $c-theme-border__light;
+    .newsTabsListWrap.MuiBox-root {
+      .MuiTabs-root.tabsList {
+        .MuiTabs-flexContainer {
+          justify-content: center;
+          .MuiButtonBase-root.tabItem {
+            font-size: 1.6rem;
+            font-weight: 500;
+            transition: 0.4s;
+            color: $c-theme-font;
+            &:hover {
+              transform: scale(1.1);
+            }
           }
         }
       }

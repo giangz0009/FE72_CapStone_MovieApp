@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from "react";
 
 import { Box, Container, Tab } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -25,6 +25,7 @@ import CenteredTab from "common/components/CenteredTab";
 import dateTime from "common/utils/dateJs";
 import BasicVerticalTab from "features/booking/common/components/BasicVerticalTab";
 import CinemasAccordion from "features/booking/common/components/CinemasAccordion";
+import { Link } from "react-scroll";
 
 function Details() {
   // useParams
@@ -39,7 +40,6 @@ function Details() {
   // useState
   const [tabValue, setTabValue] = useState(0);
   const [cinemasBrandValue, setCinemasBrandValue] = useState(0);
-  const [cinemaBrands, setCinemaBrands] = useState({});
   // useCallBack
   const cbHandleChangeTabsList = useCallback((e, newValue) => {
     handleChangeTabsList(e, newValue);
@@ -59,7 +59,7 @@ function Details() {
       await dispatch(fetchSetSelectedMovieAction(movieId));
       await dispatch(fetchSetMovieScheduleAction(movieId));
     })();
-  }, []);
+  }, [dispatch, movieId]);
 
   // Handle Event functions
   const handleOpenModal = () => {
@@ -75,7 +75,7 @@ function Details() {
   const renderMovieInfoLgDesktop = () => {
     if (!selectedMovieInfo) return <Loading />;
 
-    const { hinhAnh, tenPhim, maPhim, danhGia, hot } = selectedMovieInfo;
+    const { hinhAnh, tenPhim, danhGia, hot } = selectedMovieInfo;
 
     let { trailer } = selectedMovieInfo;
 
@@ -97,7 +97,16 @@ function Details() {
                 <Box className={styles.movieInfoHeaderTitle}>
                   <h3>{tenPhim}</h3>
                   <p>120 phút</p>
-                  <Link to="/booking">Mua vé</Link>
+                  <Link
+                    to="movieInfoFooter"
+                    spy={true}
+                    smooth={true}
+                    offset={-50}
+                    duration={500}
+                    onClick={() => setTabValue(0)}
+                  >
+                    Mua vé
+                  </Link>
                 </Box>
               </Box>
               <Box className={styles.movieInfoHeaderRating}>
@@ -252,7 +261,7 @@ function Details() {
     <Box className={styles.movieInfo} marginBottom={5}>
       {renderMovieInfoLgDesktop()}
 
-      <Box className={styles.movieInfoFooter}>
+      <Box className={styles.movieInfoFooter} id="movieInfoFooter">
         <Container maxWidth="md">
           <CenteredTab
             tabsList={tabsList}

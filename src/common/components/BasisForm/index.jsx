@@ -12,6 +12,7 @@ function BasicForm({
   handleOnSubmit,
   inputFormGroupsList,
   subText,
+  submitLabel = "Submit",
 }) {
   const renderInputFormGroupsList = (formik) =>
     inputFormGroupsList.map((inputFormGroup, index) => (
@@ -45,7 +46,7 @@ function BasicForm({
           <Form className="form">
             {renderInputFormGroupsList(formik)}
             <div className="formGroup">
-              <button type="submit">Submit</button>
+              <button type="submit">{submitLabel}</button>
             </div>
             <div className="formGroup">{subText}</div>
           </Form>

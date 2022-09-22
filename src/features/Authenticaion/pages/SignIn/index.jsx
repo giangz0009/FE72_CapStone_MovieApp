@@ -105,13 +105,14 @@ function SignIn() {
           handleOnSubmit={cbHandleOnSubmit}
           inputFormGroupsList={inputFormGroupsList}
           subText={subText}
+          submitLabel="Đăng nhập"
         />
         <p className="subText">test</p>
       </BasicModal>
       <BasicModal
         ref={refNotifyModal}
         costumeStyle={{
-          maxWidth: { xs: "300px", sm: "sm" },
+          maxWidth: { xs: "100vw", sm: "sm" },
           width: "100%",
           backgroundColor: "var(--bg-color)",
           minHeight: 300,

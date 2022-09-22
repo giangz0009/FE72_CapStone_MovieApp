@@ -5,13 +5,21 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, Box } from "@mui/material";
 
 import styles from "./styles.module.scss";
-import BasicRating from "common/components/BasisRaing";
+import BasicRating from "common/components/BasisRating";
 
 import "./globalStyle.scss";
+import { useNavigate } from "react-router-dom";
 
 export default function MovieItem({ movie }) {
+  const navigate = useNavigate();
+
+  const handleOnclickMovieItem = (id) => {
+    navigate(`/details/${id}`);
+  };
+
   return (
     <Card
+      onClick={() => handleOnclickMovieItem(movie.maPhim)}
       className={
         styles.movieItem +
         " movieItem " +

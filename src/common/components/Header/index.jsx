@@ -20,11 +20,10 @@ import Logo from "../Logo";
 import Navigation from "../Navigation";
 import Authentication from "./Authentication";
 import Theme from "./Theme";
-
-const accountSettings = [
-  { title: "Sign In", path: "/signIn" },
-  { title: "Sign Up", path: "/signUp" },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { authActionType } from "features/Authenticaion/action";
 
 const Header = () => {
   const pages = [
@@ -33,9 +32,53 @@ const Header = () => {
     { label: "Tin tức", idHomeSection: "newsList" },
   ];
 
+  // useDispatch
+  const dispatch = useDispatch();
+
+  // useNavigate
+  const navigate = useNavigate();
+
   // Use State
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const [accountSettings, setAccountSettings] = useState([
+    { title: "Đăng nhập", path: "/signIn" },
+    {
+      title: "Đăng ký",
+      path: "/signUp",
+    },
+  ]);
+
+  // useSelector
+  const userProfile = useSelector((state) => state.authentication.profile);
+
+  // useEffect
+  useEffect(() => {
+    if (!userProfile) {
+      setAccountSettings([
+        { title: "Đăng nhập", path: "/signIn" },
+        {
+          title: "Đăng ký",
+          path: "/signUp",
+        },
+      ]);
+      return;
+    }
+
+    setAccountSettings([
+      { title: userProfile.hoTen, path: "/signIn" },
+      {
+        title: "Đăng xuất",
+        onClick() {
+          localStorage.removeItem("token");
+
+          dispatch(authActionType.setProfile(null));
+
+          goToHome();
+        },
+      },
+    ]);
+  }, [userProfile]);
 
   // Handle Event
   const handleOpenNavMenu = (event) => {
@@ -52,6 +95,11 @@ const Header = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  // Navigate function
+  const goToHome = () => {
+    navigate("/");
+  };
+  // render functions
 
   return (
     <AppBar id={style.header} position="fixed">
@@ -108,7 +156,7 @@ const Header = () => {
               {pages.map((page, index) => (
                 <li key={index} className={style.navLinkItem}>
                   <Link
-                    activeClass={style.navLinkActive}
+                    // activeClass={style.navLinkActive}
                     className={style.navLink}
                     to={page.idHomeSection}
                     spy={true}

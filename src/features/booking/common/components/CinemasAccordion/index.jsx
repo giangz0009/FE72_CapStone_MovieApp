@@ -18,7 +18,7 @@ import Loading from "common/components/Loading";
 import dateTime from "common/utils/dateJs";
 import { useEffect } from "react";
 
-function CinemasAccordion({ cinemasData = [] }) {
+function CinemasAccordion({ cinemasData = [], obShow = "movies" }) {
   const [expandedMovieSchedules, setExpandedMovieSchedules] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [movieScheduleData, setMovieScheduleData] = useState([]);
@@ -87,68 +87,115 @@ function CinemasAccordion({ cinemasData = [] }) {
   const renderMovieSchedules = () => {
     if (lodashIsEmpty(movieScheduleData)) return <Loading />;
 
-    return movieScheduleData.map((movie, index) => (
-      <Accordion
-        key={index}
-        className={styles.movieScheduleItem}
-        expanded={expandedMovieSchedules === movie.maPhim}
-        onChange={handleChangeExpendMovieSchedule(movie.maPhim, index)}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls={`panel${index + 1}a-content`}
-          id={`panel${index + 1}a-header`}
+    if (obShow === "movies")
+      return movieScheduleData.map((movie, index) => (
+        <Accordion
+          key={index}
+          className={styles.movieScheduleItem}
+          expanded={expandedMovieSchedules === movie.maPhim}
+          onChange={handleChangeExpendMovieSchedule(movie.maPhim, index)}
         >
-          <Box key={index} className={styles.movieScheduleItemWrap}>
-            <img src={movie.hinhAnh} alt={movie.tenPhim} />
-            <Box className={styles.movieScheduleInfo}>
-              <h3>{movie.tenPhim}</h3>
-              <p>120 phút</p>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls={`panel${index + 1}a-content`}
+            id={`panel${index + 1}a-header`}
+          >
+            <Box key={index} className={styles.movieScheduleItemWrap}>
+              <img src={movie.hinhAnh} alt={movie.tenPhim} />
+              <Box className={styles.movieScheduleInfo}>
+                <h3>{movie.tenPhim}</h3>
+                <p>120 phút</p>
+              </Box>
             </Box>
-          </Box>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Box className={styles.movieScheduleDate}>
-            <FormControl fullWidth className="movieScheduleDateSelectForm">
-              <Select
-                id="movieScheduleSelect"
-                displayEmpty
-                inputProps={{ "aria-label": "Without label" }}
-                value={movie.lstLichChieuTheoNgay.selectedDate}
-                onChange={(event) =>
-                  handleChangeSelectMovieScheduleDate(event, index)
-                }
-              >
-                {movie.lstLichChieuTheoNgay.lst.map((lst, index) => (
-                  <MenuItem
-                    className="movieScheduleDateMenuItem"
-                    key={lst.ngayChieu}
-                    value={index}
-                  >
-                    {dateTime(lst.ngayChieu).getDayOfWeek()} ,
-                    {dateTime(lst.ngayChieu).getDateMonth()}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <Box className={styles.movieScheduleShowTime}>
-              {movie.lstLichChieuTheoNgay.lst[
-                movie.lstLichChieuTheoNgay.selectedDate
-              ].lichChieu.map((time) => (
-                <Button
-                  className={styles.movieScheduleShowTimeBtn}
-                  key={time.maLichChieu}
-                  variant="outlined"
+          </AccordionSummary>
+          <AccordionDetails>
+            <Box className={styles.movieScheduleDate}>
+              <FormControl fullWidth className="movieScheduleDateSelectForm">
+                <Select
+                  id="movieScheduleSelect"
+                  displayEmpty
+                  inputProps={{ "aria-label": "Without label" }}
+                  value={movie.lstLichChieuTheoNgay.selectedDate}
+                  onChange={(event) =>
+                    handleChangeSelectMovieScheduleDate(event, index)
+                  }
                 >
-                  {dateTime(time.ngayChieuGioChieu).getDateTime()}
-                  <span> ~ {dateTime(time.ngayChieuGioChieu).addHours(2)}</span>
-                </Button>
-              ))}
+                  {movie.lstLichChieuTheoNgay.lst.map((lst, index) => (
+                    <MenuItem
+                      className="movieScheduleAccordionDateMenuItem"
+                      key={lst.ngayChieu}
+                      value={index}
+                    >
+                      {dateTime(lst.ngayChieu).getDayOfWeek()} ,
+                      {dateTime(lst.ngayChieu).getDateMonth()}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <Box className={styles.movieScheduleShowTime}>
+                {movie.lstLichChieuTheoNgay.lst[
+                  movie.lstLichChieuTheoNgay.selectedDate
+                ].lichChieu.map((time) => (
+                  <Button
+                    className={styles.movieScheduleShowTimeBtn}
+                    key={time.maLichChieu}
+                    variant="outlined"
+                  >
+                    {dateTime(time.ngayChieuGioChieu).getDateTime()}
+                    <span>
+                      {" "}
+                      ~ {dateTime(time.ngayChieuGioChieu).addHours(2)}
+                    </span>
+                  </Button>
+                ))}
+              </Box>
             </Box>
-          </Box>
-        </AccordionDetails>
-      </Accordion>
-    ));
+          </AccordionDetails>
+        </Accordion>
+      ));
+
+    const schedule = movieScheduleData[movieCinemaValue];
+
+    return (
+      <Box className={styles.movieScheduleDate}>
+        <FormControl fullWidth className="movieScheduleDateSelectForm">
+          <Select
+            id="movieScheduleSelect"
+            displayEmpty
+            inputProps={{ "aria-label": "Without label" }}
+            value={schedule.lstLichChieuTheoNgay.selectedDate}
+            onChange={(event) => {
+              handleChangeSelectMovieScheduleDate(event, movieCinemaValue);
+            }}
+          >
+            {schedule.lstLichChieuTheoNgay.lst.map((lst, index) => (
+              <MenuItem
+                className="movieScheduleAccordionDateMenuItem"
+                key={lst.ngayChieu}
+                value={index}
+              >
+                {dateTime(lst.ngayChieu).getDayOfWeek()} ,
+                {dateTime(lst.ngayChieu).getDateMonth()}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <Box className={styles.movieScheduleShowTime}>
+          {schedule.lstLichChieuTheoNgay.lst[
+            schedule.lstLichChieuTheoNgay.selectedDate
+          ].lichChieu.map((time) => (
+            <Button
+              className={styles.movieScheduleShowTimeBtn}
+              key={time.maLichChieu}
+              variant="outlined"
+            >
+              {dateTime(time.ngayChieuGioChieu).getDateTime()}
+              <span> ~ {dateTime(time.ngayChieuGioChieu).addHours(2)}</span>
+            </Button>
+          ))}
+        </Box>
+      </Box>
+    );
   };
 
   const handleChangeExpendMovieSchedule = (panel) => (event, isExpanded) => {
@@ -171,36 +218,70 @@ function CinemasAccordion({ cinemasData = [] }) {
 
   const remapMovieScheduleDate = (data, index) => {
     const cloneCinemasData = [...data];
-    const moviesListFilterByCinema = [...cloneCinemasData[index].danhSachPhim];
 
-    const reMapMovieScheduleByDateTime = moviesListFilterByCinema.map(
-      (movie) => {
-        const cloneMovie = { ...movie };
-        const datesList = cloneMovie.lstLichChieuTheoPhim.map((item) =>
-          item.ngayChieuGioChieu.slice(0, 10)
-        );
+    if (obShow === "movies") {
+      const moviesListFilterByCinema = [
+        ...cloneCinemasData[index].danhSachPhim,
+      ];
 
-        const filterDatesList = Array.from(new Set([...datesList]));
-
-        const lstScheduleByDate = filterDatesList.map((item) => {
-          const filterByDate = cloneMovie.lstLichChieuTheoPhim.filter(
-            (schedule) => schedule.ngayChieuGioChieu.match(item)
+      const reMapMovieScheduleByDateTime = moviesListFilterByCinema.map(
+        (movie) => {
+          const cloneMovie = { ...movie };
+          const datesList = cloneMovie.lstLichChieuTheoPhim.map((item) =>
+            item.ngayChieuGioChieu.slice(0, 10)
           );
 
-          return {
-            ngayChieu: item,
-            lichChieu: [...filterByDate],
-          };
-        });
+          const filterDatesList = Array.from(new Set([...datesList]));
 
-        delete cloneMovie.lstLichChieuTheoPhim;
+          const lstScheduleByDate = filterDatesList.map((item) => {
+            const filterByDate = cloneMovie.lstLichChieuTheoPhim.filter(
+              (schedule) => schedule.ngayChieuGioChieu.match(item)
+            );
+
+            return {
+              ngayChieu: item,
+              lichChieu: [...filterByDate],
+            };
+          });
+
+          delete cloneMovie.lstLichChieuTheoPhim;
+
+          return {
+            ...cloneMovie,
+            lstLichChieuTheoNgay: { lst: lstScheduleByDate, selectedDate: 0 },
+          };
+        }
+      );
+
+      return reMapMovieScheduleByDateTime;
+    }
+
+    const reMapMovieScheduleByDateTime = cloneCinemasData.map((cinema) => {
+      const cloneCinema = { ...cinema };
+      const datesList = cloneCinema.lichChieuPhim.map((item) =>
+        item.ngayChieuGioChieu.slice(0, 10)
+      );
+
+      const filterDatesList = Array.from(new Set([...datesList]));
+
+      const lstScheduleByDate = filterDatesList.map((item) => {
+        const filterByDate = cloneCinema.lichChieuPhim.filter((schedule) =>
+          schedule.ngayChieuGioChieu.match(item)
+        );
 
         return {
-          ...cloneMovie,
-          lstLichChieuTheoNgay: { lst: lstScheduleByDate, selectedDate: 0 },
+          ngayChieu: item,
+          lichChieu: [...filterByDate],
         };
-      }
-    );
+      });
+
+      delete cloneCinema.lstLichChieuTheoPhim;
+
+      return {
+        ...cloneCinema,
+        lstLichChieuTheoNgay: { lst: lstScheduleByDate, selectedDate: 0 },
+      };
+    });
 
     return reMapMovieScheduleByDateTime;
   };

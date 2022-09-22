@@ -9,17 +9,11 @@ import { useState } from "react";
 import lodashIsEmpty from "lodash.isempty";
 
 import Loading from "common/components/Loading";
-import { useLocation, useNavigate } from "react-router-dom";
 
 export default function MoviesList({ style }) {
-  // useNavigate
-  const navigate = useNavigate();
-  // Location
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const locationPage = +(query.get("page") || "1");
   // useSelector
   const moviesList = useSelector((state) => state.booking.moviesList);
+  const locationPage = useSelector((state) => state.booking.currentPage);
   const isActiveType = useSelector((state) => state.booking.isMovieActive);
 
   //   useState
@@ -33,9 +27,9 @@ export default function MoviesList({ style }) {
 
   // useEffect
 
-  useEffect(() => {
-    navigate("/", { replace: true });
+  // console.log(isActiveType);
 
+  useEffect(() => {
     const res = updateMoviesList();
     const { movieFilterByType, movieShowForPage } = res;
 

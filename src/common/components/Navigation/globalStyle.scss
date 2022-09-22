@@ -1,0 +1,5 @@
+@import "assets/scss/Helper/_variable.scss";
+.navLinkActive {
+  transform: scale(1.1) !important;
+  color: $primary-color !important;
+}

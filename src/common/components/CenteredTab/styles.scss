@@ -1,0 +1,22 @@
+@import "assets/scss/Helper/_variable.scss";
+
+.tabsList.MuiTabs-root {
+  padding-block: 2rem;
+  .MuiTabs-indicator {
+    display: none;
+  }
+}
+.tabItem.MuiTab-root {
+  font-size: 1.6rem;
+  color: $c-theme-font !important;
+  padding-inline: 3.2rem;
+  transition: 0.4s;
+  &.Mui-selected {
+    color: $primary-color !important;
+    transform: scale(1.1) !important;
+  }
+  &:hover {
+    transform: scale(1.1) !important;
+    color: $primary-color !important;
+  }
+}

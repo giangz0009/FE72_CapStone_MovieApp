@@ -233,7 +233,7 @@ function SearchSelect() {
               renderTags={() => null}
               noOptionsText="No labels"
               renderOption={(props, option) => (
-                <li {...props}>
+                <li {...props} key={option.maPhim}>
                   <HtmlTooltip
                     className={style.searchToolTipWrap}
                     title={
@@ -278,7 +278,7 @@ function SearchSelect() {
               }}
             >
               {lodashIsEmpty(theatersData) ? (
-                <MenuItem value="">Vui lòng chọn phim</MenuItem>
+                <MenuItem value="">Không có rạp...</MenuItem>
               ) : (
                 theatersData.map((theater) => (
                   <MenuItem key={theater.maCumRap} value={theater.maCumRap}>

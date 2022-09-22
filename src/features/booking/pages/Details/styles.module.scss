@@ -1,0 +1,239 @@
+@import "assets/scss/Helper/_variable.scss";
+@import "assets/scss/Helper/_mixins.scss";
+
+.movieInfo {
+  margin-top: 4rem;
+  .movieInfoHeader {
+    --height: 50vh;
+    position: relative;
+    height: var(--height);
+    display: flex;
+    align-items: center;
+    @include res_md {
+      --height: 70vh;
+    }
+    @include res_lg {
+      --height: 88vh;
+    }
+    .movieInfoHeaderWrap {
+      position: relative;
+      border-radius: 0.8rem;
+      border: 1px solid $c-theme-border;
+      background-color: $c-theme-layer;
+      padding: 1.6rem;
+      z-index: 2;
+      & > div {
+        display: flex;
+        align-items: center;
+        .movieInfoHeaderMain {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          width: 80%;
+          .movieInfoImage {
+            width: 30%;
+            height: calc(var(--height) / 2);
+            border-radius: 0.4rem;
+            overflow: hidden;
+            position: relative;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center;
+            }
+            svg {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              font-size: 5rem;
+              color: #f7f7f7;
+              z-index: 3;
+              opacity: 0;
+              visibility: hidden;
+              transition: 0.4s;
+              cursor: pointer;
+            }
+            &::after {
+              content: "";
+              display: block;
+              position: absolute;
+              z-index: 2;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background-color: $c-theme-layer-thin;
+              opacity: 0;
+              visibility: hidden;
+              transition: 0.4s;
+            }
+            &:hover {
+              &::after,
+              svg {
+                opacity: 1;
+                visibility: visible;
+              }
+            }
+          }
+          .movieInfoHeaderTitle {
+            margin-inline: 2rem;
+            @include res_lg {
+              margin-inline: 4rem;
+            }
+            h3 {
+              font-size: 1.6rem;
+              color: #eee;
+              margin-block: 0;
+              @include res_lg {
+                font-size: 3rem;
+              }
+            }
+            p {
+              font-size: 1rem;
+              color: #c2c2c2;
+              @include res_lg {
+                font-size: 1.6rem;
+              }
+            }
+            a {
+              font-size: 1rem;
+              color: #f7f7f7;
+              background-color: $primary-color;
+              text-decoration: none;
+              padding: 0.8rem 1.6rem;
+              border-radius: 0.8rem;
+              transition: 0.4s;
+              margin-top: 1rem;
+              display: inline-block;
+              @include res_lg {
+                font-size: 1.6rem;
+                padding: 1.2rem 2rem;
+              }
+              &:hover {
+                opacity: 0.8;
+              }
+            }
+          }
+        }
+        .movieInfoHeaderRating {
+          flex: 1;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    .movieInfoHeaderLayer {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: blur(12px);
+      background-color: $c-theme-bg;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    &.hot {
+      .movieInfoImage {
+        &::after {
+          content: "HOT";
+          display: inline-block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: 0.6rem 1.2rem;
+          background-color: $primary-color;
+          color: #f8f9fa;
+          font-size: 1.2rem;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .movieInfoFooter {
+    .tabPanelMovieInfo {
+      display: flex;
+      flex-wrap: wrap;
+      padding-block: 2rem;
+      @include res_lg {
+        gap: 4rem;
+        flex-wrap: nowrap;
+      }
+      & > div {
+        flex-basis: 100%;
+        @include res_lg {
+          flex-basis: 50%;
+        }
+        & > p {
+          font-size: 1.6rem;
+          color: $c-theme-font;
+          &:first-child {
+            font-weight: 600;
+          }
+        }
+        & > div {
+          display: flex;
+          align-items: center;
+          p {
+            font-size: 1.6rem;
+            color: $c-theme-font;
+            flex-basis: 50%;
+            &:first-child {
+              color: $c-theme-heading;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+    .cinemasTabContainer {
+      padding-block: 4rem;
+      .cinemasWrapTab {
+        background-color: $c-theme-bg;
+        border: 1px solid $c-theme-border__light;
+        box-shadow: 0 0 10px $c-theme-box-shadow;
+        border-radius: 8px;
+        .cinemasBrandTab {
+          border-right: 1px solid $c-theme-border__light !important;
+          .cinemasBrandTabItem {
+            opacity: 0.7;
+            transition: 0.4s;
+            border-bottom: 1px solid $c-theme-border__light;
+            &:last-child {
+              border-bottom: none;
+            }
+            img {
+              display: block;
+              width: 40px;
+              height: 40px;
+              object-fit: cover;
+              object-position: center;
+              transition: 0.4s;
+              @include res_lg {
+                width: 50px;
+                height: 50px;
+              }
+            }
+            &:hover {
+              opacity: 1;
+              img {
+                transform: scale(1.2);
+              }
+            }
+            &.cinemasBrandTabItemActive {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}

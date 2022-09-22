@@ -3,8 +3,12 @@ import { Container, CssBaseline, Box } from "@mui/material";
 
 import Carousel from "common/components/Carousel";
 import SearchSelect from "features/booking/common/components/SearchSelect";
-import { fetchSetMoviesListAction } from "features/booking/action";
-import { useDispatch } from "react-redux";
+import {
+  fetchSetCinemasBrandListAction,
+  fetchSetMoviesListAction,
+  fetchSetMoviesListBannerAction,
+} from "features/booking/action";
+import { useDispatch, useSelector } from "react-redux";
 import MoviesListTabBar from "features/booking/common/components/MoviesListTabBar";
 import MoviesList from "features/booking/common/components/MoviesList";
 import CinemasTab from "features/booking/common/components/CinemasTab";
@@ -13,9 +17,15 @@ import NewsList from "features/booking/common/components/NewsList";
 function Home() {
   // useDispatch
   const dispatch = useDispatch();
+  // useSelector
+  const cinemasBrandData = useSelector(
+    (state) => state.booking.cinemasBrandList
+  );
   // useEffect
   useEffect(() => {
+    dispatch(fetchSetMoviesListBannerAction);
     dispatch(fetchSetMoviesListAction);
+    dispatch(fetchSetCinemasBrandListAction);
   }, []);
   return (
     <div>
@@ -29,7 +39,7 @@ function Home() {
           <MoviesListTabBar />
           <MoviesList style={{ paddingBlock: 3 }} />
         </Box>
-        <CinemasTab />
+        <CinemasTab cinemasBrandData={cinemasBrandData} />
         <NewsList />
       </Container>
     </div>

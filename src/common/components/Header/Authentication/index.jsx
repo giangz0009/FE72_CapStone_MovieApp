@@ -21,6 +21,12 @@ function Authentication({
 }) {
   const navigate = useNavigate();
 
+  const handleOnClickMenuItem = (setting) => {
+    if ("path" in setting) navigate(setting.path);
+    else setting.onClick();
+    handleCloseUserMenu();
+  };
+
   return (
     <Box sx={{ ...sx }} className={style.authentication}>
       <Tooltip title="Open settings">
@@ -49,13 +55,10 @@ function Authentication({
           },
         }}
       >
-        {accountSettings.map((setting) => (
+        {accountSettings.map((setting, index) => (
           <MenuItem
-            key={setting.path}
-            onClick={() => {
-              navigate(setting.path);
-              handleCloseUserMenu();
-            }}
+            key={index}
+            onClick={() => handleOnClickMenuItem(setting)}
             sx={{ justifyContent: "flex-end" }}
           >
             <Typography>{setting.title}</Typography>

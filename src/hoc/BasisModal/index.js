@@ -18,7 +18,17 @@ const style = {
   justifyContent: "center",
 };
 
-function BasicModal({ costumeStyle, children, isHasCloseBtn = true }, ref) {
+function BasicModal(
+  {
+    className,
+    costumeStyle,
+    children,
+    isHasCloseBtn = true,
+    handleOnClose,
+    isActiveOutClickEvent = true,
+  },
+  ref
+) {
   // useState
   const [open, setOpen] = React.useState(false);
 
@@ -27,17 +37,24 @@ function BasicModal({ costumeStyle, children, isHasCloseBtn = true }, ref) {
     open() {
       handleOpen();
     },
+    close() {
+      handleClose();
+    },
   }));
 
   // Handle Events
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    handleOnClose();
+  };
 
   return (
     <div>
       <Modal
+        className={className}
         open={open}
-        onClose={handleClose}
+        onClose={isActiveOutClickEvent ? handleClose : null}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

@@ -5,23 +5,27 @@ import Tab from "@mui/material/Tab";
 
 import style from "./style.module.scss";
 import "./globalStyle.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { bookingActionsType } from "features/booking/action";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function MoviesListTabBar() {
   // useDispatch
   const dispatch = useDispatch();
-  // useState
-  const [value, setValue] = React.useState(1);
+  // useSelector
+  const value = useSelector((state) => state.booking.isMovieActive) ? 1 : 0;
+  // useLocation
+  const location = useLocation();
+  const state = location.state || {};
+  // UseNavigate
+  const navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    dispatch(bookingActionsType.setIsMovieActive(!!newValue));
+    dispatch(bookingActionsType.setCurrentPage(1));
+    navigate("/", { state: { ...state, isActive: !!newValue } });
   };
-
-  useEffect(() => {
-    dispatch(bookingActionsType.setIsMovieActive(!!value));
-  }, [value]);
 
   return (
     <Box sx={{ width: "100%", mt: 5 }}>

@@ -1,4 +1,5 @@
 @import "assets/scss/Helper/_variable.scss";
+@import "assets/scss/Helper/_mixins.scss";
 
 .cinemasItem.MuiAccordion-root {
   .MuiAccordionSummary-expandIconWrapper {
@@ -10,10 +11,18 @@
     margin-bottom: 0.8rem;
     .MuiSelect-select {
       font-size: 1.1rem !important;
+      @include res_lg {
+        font-size: 1.6rem !important;
+      }
     }
   }
 }
 
-.MuiPaper-root .MuiList-root .MuiMenuItem-root.movieScheduleDateMenuItem {
+.MuiPaper-root
+  .MuiList-root
+  .MuiMenuItem-root.movieScheduleAccordionDateMenuItem {
   font-size: 1.1rem !important;
+  @include res_lg {
+    font-size: 1.6rem !important;
+  }
 }

@@ -12,14 +12,12 @@ import { Button } from "@mui/material";
 import clsx from "clsx";
 import lodashIsEmpty from "lodash.isempty";
 
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
 
 import styles from "./styles.module.scss";
 import "./globalStyle.scss";
 
-import { fetchSetCinemasBrandListAction } from "features/booking/action";
 import Loading from "common/components/Loading";
 import instance from "app/instance";
 import { useCallback } from "react";
@@ -54,27 +52,18 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function CinemasTab() {
+export default function CinemasTab({ cinemasBrandData }) {
   const { width } = useWindowDimensions();
 
   // CinemasBrandTab
   const [cinemasBrandValue, setCinemasBrandValue] = useState(0);
-  const cinemasBrandData = useSelector(
-    (state) => state.booking.cinemasBrandList
-  );
   //   CinemasTab
   const [cinemasValue, setCinemasValue] = useState(0);
   const [cinemasData, setCinemasData] = useState([]);
   // MovieSchedule
   const [movieScheduleData, setMovieScheduleData] = useState([]);
 
-  //   useDispatch
-  const dispatch = useDispatch();
   // useEffect
-  // Dispatch cinemasBrandList
-  useEffect(() => {
-    dispatch(fetchSetCinemasBrandListAction);
-  }, []);
 
   // handle onchange cinemasBrandValue & cinemasBrandData
   useEffect(() => {

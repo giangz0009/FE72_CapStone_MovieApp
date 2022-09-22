@@ -1,12 +1,8 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import Typography from "@mui/material/Typography";
 
-export default function BasicRating({
-  initialRate = 0,
-  ratingType = "controlled",
-}) {
+export default function BasicRating({ initialRate = 0, ratingType, style }) {
   const [value, setValue] = React.useState(initialRate);
 
   const controlledRatingComp = () => (
@@ -18,7 +14,7 @@ export default function BasicRating({
       onChange={(event, newValue) => {
         setValue(newValue);
       }}
-      style={{ fontSize: "7rem" }}
+      sx={{ fontSize: { xs: "4rem", lg: "7rem" } }}
     />
   );
 
@@ -29,7 +25,7 @@ export default function BasicRating({
       name="read-only size-large"
       value={value}
       readOnly
-      style={{ fontSize: "7rem" }}
+      sx={{ fontSize: { xs: "4rem", lg: "7rem" } }}
     />
   );
 
@@ -39,5 +35,14 @@ export default function BasicRating({
       : readOnlyRatingComp();
   };
 
-  return <Box>{checkRatingTypeToRender()}</Box>;
+  return (
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      style={{ ...style }}
+    >
+      {checkRatingTypeToRender()}
+    </Box>
+  );
 }

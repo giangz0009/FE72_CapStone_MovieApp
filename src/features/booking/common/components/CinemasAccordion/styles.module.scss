@@ -19,6 +19,14 @@
         height: 40px;
         object-fit: cover;
         object-position: center;
+        @include res_lg {
+          width: 60px;
+          height: 60px;
+        }
+        @include res_xl {
+          width: 80px;
+          height: 80px;
+        }
       }
       .cinemasItemInfo {
         margin-left: 0.8rem;
@@ -30,6 +38,9 @@
             margin-block: 0;
             font-size: 1.2rem;
             color: $primary-color;
+            @include res_md {
+              font-size: 1.6rem;
+            }
           }
           span {
             margin-left: 0.6rem;
@@ -37,12 +48,24 @@
             font-size: 1rem;
             color: $c-theme-font;
             @include limitLineText(1);
+            @include res_md {
+              font-size: 1.2rem;
+            }
+            @include res_lg {
+              font-size: 1.4rem;
+            }
           }
         }
         p {
           color: $c-theme-font;
           font-size: 1rem;
           @include limitLineText(1);
+          @include res_md {
+            font-size: 1.2rem;
+          }
+          @include res_lg {
+            font-size: 1.4rem;
+          }
         }
       }
     }
@@ -80,9 +103,17 @@
             border: 1px solid $primary-color;
             color: $primary-color;
             margin: 0.4rem;
+            font-size: 1.1rem;
+            @include res_lg {
+              font-size: 1.6rem;
+            }
             span {
               color: $c-theme-font;
               margin-left: 0.6rem;
+              font-size: 1.1rem;
+              @include res_lg {
+                font-size: 1.6rem;
+              }
             }
           }
         }

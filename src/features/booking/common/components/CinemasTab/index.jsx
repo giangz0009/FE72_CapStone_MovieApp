@@ -25,6 +25,7 @@ import { movieId } from "app/constants";
 import dateTime from "common/utils/dateJs";
 import useWindowDimensions from "common/hooks/useWindowDimension";
 import CinemasAccordion from "../CinemasAccordion";
+import { useNavigate } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -53,6 +54,9 @@ TabPanel.propTypes = {
 };
 
 export default function CinemasTab({ cinemasBrandData }) {
+  // useNavigate
+  const navigate = useNavigate();
+  // useWindowDimensions
   const { width } = useWindowDimensions();
 
   // CinemasBrandTab
@@ -252,6 +256,7 @@ export default function CinemasTab({ cinemasBrandData }) {
                   className={styles.movieScheduleShowTimeBtn}
                   key={time.maLichChieu}
                   variant="outlined"
+                  onClick={() => navigate(`/booking/${time.maLichChieu}`)}
                 >
                   {dateTime(time.ngayChieuGioChieu).getDateTime()}
                   <span> ~ {dateTime(time.ngayChieuGioChieu).addHours(2)}</span>

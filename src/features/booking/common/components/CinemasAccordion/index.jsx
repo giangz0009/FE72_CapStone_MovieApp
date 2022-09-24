@@ -17,12 +17,16 @@ import { useState } from "react";
 import Loading from "common/components/Loading";
 import dateTime from "common/utils/dateJs";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CinemasAccordion({ cinemasData = [], obShow = "movies" }) {
   const [expandedMovieSchedules, setExpandedMovieSchedules] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [movieScheduleData, setMovieScheduleData] = useState([]);
   const [movieCinemaValue, setMovieCinemaValue] = useState(0);
+
+  // useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (lodashIsEmpty(cinemasData)) return;
@@ -140,6 +144,9 @@ function CinemasAccordion({ cinemasData = [], obShow = "movies" }) {
                     className={styles.movieScheduleShowTimeBtn}
                     key={time.maLichChieu}
                     variant="outlined"
+                    onClick={() => {
+                      navigate(`/booking/${time.maLichChieu}`);
+                    }}
                   >
                     {dateTime(time.ngayChieuGioChieu).getDateTime()}
                     <span>
@@ -188,6 +195,9 @@ function CinemasAccordion({ cinemasData = [], obShow = "movies" }) {
               className={styles.movieScheduleShowTimeBtn}
               key={time.maLichChieu}
               variant="outlined"
+              onClick={() => {
+                navigate(`/booking/${time.maLichChieu}`);
+              }}
             >
               {dateTime(time.ngayChieuGioChieu).getDateTime()}
               <span> ~ {dateTime(time.ngayChieuGioChieu).addHours(2)}</span>

@@ -7,6 +7,7 @@ import PageLoading from "common/components/PageLoading";
 import { appActionTypes } from "./actions";
 import DefaultLayout from "common/hoc/DefaultLayout";
 import { fetchGetProfileAction } from "features/Authenticaion/action";
+import BookingSeat from "features/booking/common/components/BookingSeats";
 
 // Route Components
 const Home = lazy(() => import("features/booking/pages/Home"));
@@ -57,6 +58,8 @@ const App = () => {
           />
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/signUp" element={<SignUp />} />
+          <Route path="/booking/:movieScheduleId" element={<BookingSeat />} />
+          {/* Others Link */}
           <Route
             path="*"
             element={

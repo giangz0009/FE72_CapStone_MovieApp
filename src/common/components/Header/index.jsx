@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   CssBaseline,
   AppBar,
@@ -24,6 +24,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { authActionType } from "features/Authenticaion/action";
+import BasicConfirmModal from "common/hoc/BasicConfirmModal";
+import { useCallback } from "react";
 
 const Header = () => {
   const pages = [
@@ -31,6 +33,23 @@ const Header = () => {
     { label: "Cụm rạp", idHomeSection: "cinemasTab" },
     { label: "Tin tức", idHomeSection: "newsList" },
   ];
+
+  // useRef
+  const refBasicConfirmModal = useRef();
+  const confirmContent = {
+    heading: "Thống báo",
+    content: "Bạn có chắc muốn đăng xuất chứ?",
+    cancelBtn: "Hủy",
+    submitBtn: "Tiếp tục",
+  };
+  // useCallback
+  const cbHandleClickSubmitConfirmModal = useCallback(() => {
+    localStorage.removeItem("token");
+
+    dispatch(authActionType.setProfile(null));
+
+    goToHome();
+  }, []);
 
   // useDispatch
   const dispatch = useDispatch();
@@ -70,11 +89,7 @@ const Header = () => {
       {
         title: "Đăng xuất",
         onClick() {
-          localStorage.removeItem("token");
-
-          dispatch(authActionType.setProfile(null));
-
-          goToHome();
+          refBasicConfirmModal.current.open();
         },
       },
     ]);
@@ -207,6 +222,11 @@ const Header = () => {
           </Box>
         </Toolbar>
       </Container>
+      <BasicConfirmModal
+        ref={refBasicConfirmModal}
+        handleClickSubmit={cbHandleClickSubmitConfirmModal}
+        confirmContent={confirmContent}
+      />
     </AppBar>
   );
 };

@@ -10,6 +10,51 @@ const bookingActionsType = {
   setIsMovieActive: createAction("Booking/SET_IS_MOVIE_ACTIVE"),
   setCinemasBrandList: createAction("Booking/SET_CINEMAS_BRAND_LIST"),
   setCurrentPage: createAction("Booking/SET_CURRENT_PAGE"),
+  setTicketsList: createAction("Booking/SET_TICKET"),
+  setSelectedSeats: createAction("Booking/SET_SELECTED_SEATS"),
+  setPaymentType: createAction("Booking/SET_PAYMENT_TYPE"),
+};
+
+const fetchSetTicketsList = (movieScheduleId) => {
+  return async (dispatch) => {
+    try {
+      const res = await instance.request({
+        url: "/api/QuanLyDatVe/LayDanhSachPhongVe",
+        method: "Get",
+        params: {
+          maLichChieu: movieScheduleId,
+        },
+      });
+
+      const seatsRange = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+      const seatsList = [...res.data.content.danhSachGhe];
+
+      const numberSeatsInPerRange = seatsList.length / seatsRange.length;
+
+      const remapSeatsList = seatsList.map((seat, index) => {
+        const seatRangePos = Math.floor(index / numberSeatsInPerRange);
+
+        return {
+          ...seat,
+          label:
+            seatsRange[seatRangePos] +
+            String(index + 1 - numberSeatsInPerRange * seatRangePos).padStart(
+              2,
+              "0"
+            ),
+        };
+      });
+
+      dispatch(
+        bookingActionsType.setTicketsList({
+          ...res.data.content,
+          danhSachGhe: remapSeatsList,
+        })
+      );
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
 };
 
 const fetchSetMovieScheduleAction = (movieId) => {
@@ -95,4 +140,5 @@ export {
   fetchSetMoviesListBannerAction,
   fetchSetMoviesListAction,
   fetchSetCinemasBrandListAction,
+  fetchSetTicketsList,
 };

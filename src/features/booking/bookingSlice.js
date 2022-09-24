@@ -11,10 +11,22 @@ const initialState = {
   selectedMovie: null,
   cinemasBrandList: null,
   currentPage: 1,
+  ticketsList: null,
+  selectedSeats: [],
+  paymentType: {},
 };
 
 const bookingReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(bookingActionsType.setPaymentType, (state, action) => {
+      state.paymentType = action.payload;
+    })
+    .addCase(bookingActionsType.setSelectedSeats, (state, action) => {
+      state.selectedSeats = action.payload;
+    })
+    .addCase(bookingActionsType.setTicketsList, (state, action) => {
+      state.ticketsList = action.payload;
+    })
     .addCase(bookingActionsType.setCurrentPage, (state, action) => {
       state.currentPage = action.payload;
     })

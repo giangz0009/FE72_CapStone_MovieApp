@@ -1,0 +1,36 @@
+@import "assets/scss/Helper/_variable.scss";
+
+.MuiDialog-root.basicConfirmModal {
+  .MuiPaper-root {
+    background-color: $c-theme-bg;
+    min-width: 300px;
+    min-height: 200px;
+    .MuiTypography-root {
+      &.MuiTypography-h6 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: $primary-color;
+      }
+    }
+    .MuiDialogContent-root {
+      .MuiTypography-root {
+        font-size: 1.4rem !important;
+        color: $c-theme-font !important;
+      }
+    }
+    .MuiDialogActions-root {
+      padding-bottom: 1.6rem;
+      padding-inline: 2.4rem;
+      button {
+        color: #f8f9fa;
+        font-size: 1.4rem;
+        &:first-child {
+          background-color: $disable-color;
+        }
+        &:last-child {
+          background-color: $primary-color;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@import "assets/scss/Helper/_variable.scss";
+
+.MuiStepper-horizontal.horizonStepper {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  background-color: $c-theme-bg;
+  //   align-items: center;
+  .MuiStepLabel-iconContainer {
+    & > div {
+      svg {
+        font-size: 2.8rem;
+      }
+    }
+  }
+  .MuiStepLabel-label {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: $c-theme-heading;
+  }
+  .userIcon.MuiBox-root {
+    height: 100%;
+    svg {
+      color: $c-theme-heading;
+      font-size: 6rem;
+    }
+  }
+}

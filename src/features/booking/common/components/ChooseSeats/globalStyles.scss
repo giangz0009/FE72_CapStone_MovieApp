@@ -160,15 +160,19 @@
 
 .basicModalChooseSeatWrap {
   & > .MuiBox-root {
+    min-width: 260px;
+    min-height: 200px;
     background-color: $c-theme-bg;
     border-radius: 0.8rem;
-    padding: 1rem 2rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     box-shadow: 0 0 10px $c-theme-box-shadow;
     p {
       font-size: 1.6rem;
       color: $c-theme-heading;
+      text-align: center;
       a {
         font-size: 1.6rem;
         color: $primary-color;

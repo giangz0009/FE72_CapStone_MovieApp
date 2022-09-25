@@ -1,0 +1,63 @@
+@import "assets/scss/Helper/_variable.scss";
+@import "assets/scss/Helper/_mixins.scss";
+
+.bookingSeatsSmallDesktop {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .bookingSeatsHeader {
+    width: 100%;
+    display: block;
+    background-color: $c-theme-bg;
+    .bookingSeatsHeaderWrap {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      button {
+        svg {
+          font-size: 3rem;
+          color: $c-theme-heading;
+        }
+      }
+      h3 {
+        color: $primary-color;
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .chooseSeats {
+    overflow-y: auto;
+    @include costume_scroll();
+    .chooseSeatsMain {
+      .chooseSeatsMainTicketsList {
+        padding-inline: 6rem 3rem;
+      }
+    }
+  }
+  .bookingSeatAction {
+    text-indent: -100000px;
+    display: flex;
+    padding: 0;
+    button {
+      flex-basis: 50%;
+      color: #f8f9fa;
+      font-size: 1.6rem;
+      border-radius: 0;
+      padding-block: 1.2rem;
+      &:first-child {
+        background-color: #f8f9fa;
+        color: rgb(68, 192, 32);
+      }
+      &:last-child {
+        background-color: $primary-color;
+      }
+      &.Mui-disabled {
+        background-color: #f8f9fa;
+        color: #c2c2c2;
+      }
+    }
+  }
+}

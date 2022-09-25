@@ -25,6 +25,11 @@
     @content;
   }
 }
+@mixin res_900() {
+  @media (min-width: $res-900) {
+    @content;
+  }
+}
 
 // Costume Scroll
 
@@ -36,6 +41,7 @@
 
   &::-webkit-scrollbar {
     width: 6px !important;
+    height: 6px !important;
     background-color: $scrollBarColor !important;
   }
 

@@ -74,12 +74,14 @@ function ChooseSeatsMain({ ticketsList }) {
 
   return (
     <Box className="chooseSeatsMain">
-      <Box className="chooseSeatsMainScreen">
-        <Box></Box>
-        <span>Màn hình</span>
-      </Box>
-      <Box className="chooseSeatsMainTicketsList">
-        {renderSeatsTicketsList()}
+      <Box className="chooseSeatsMainWrap">
+        <Box className="chooseSeatsMainScreen">
+          <Box></Box>
+          <span>Màn hình</span>
+        </Box>
+        <Box className="chooseSeatsMainTicketsList">
+          {renderSeatsTicketsList()}
+        </Box>
       </Box>
       <BasicConfirmModal
         confirmContent={confirmContent}

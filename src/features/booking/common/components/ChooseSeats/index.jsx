@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import { Box } from "@mui/system";
 import Loading from "common/components/Loading";
 import dateTime from "common/utils/dateJs";
@@ -11,8 +11,11 @@ import LivingIcon from "@mui/icons-material/Living";
 import "./globalStyles.scss";
 import { useSelector } from "react-redux";
 import ChooseSeatsMain from "./ChooseSeatsMain";
+import BasisModal from "hoc/BasisModal";
+import { useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function ChooseSeats() {
+function ChooseSeats({ resetPayment }) {
   // useSelector
   const movieInfo = useSelector(
     (state) => state.booking.ticketsList?.thongTinPhim
@@ -20,8 +23,15 @@ function ChooseSeats() {
   const ticketsList = useSelector(
     (state) => state.booking.ticketsList?.danhSachGhe
   );
+  // useRef
+  const refBasicModal = useRef();
+  // useNavigate
+  const navigate = useNavigate();
 
   // handle functions
+  const handleCountDownComplete = () => {
+    refBasicModal.current.open();
+  };
 
   // render functions
   const renderChooseSeatsHeader = () => {
@@ -46,6 +56,7 @@ function ChooseSeats() {
         <Box className="chooseSeatsHeaderCountDown">
           <p>Thời gian giữ ghế</p>
           <Countdown
+            onComplete={handleCountDownComplete}
             date={Date.now() + 60000 * 5}
             renderer={({ minutes, seconds }) => (
               <span>
@@ -85,6 +96,29 @@ function ChooseSeats() {
         <ChooseSeatsMain ticketsList={ticketsList} />
         {renderChooseSeatFooter()}
       </Container>
+      <BasisModal
+        isHasCloseBtn={false}
+        handleOnClose={() => {}}
+        ref={refBasicModal}
+        className="basicModalChooseSeatWrap"
+        isActiveOutClickEvent={false}
+      >
+        <p>
+          Đã hết thời gian giữ ghế, bạn có muốn{" "}
+          <Link to={0} onClick={resetPayment}>
+            {" "}
+            đặt lại ?
+          </Link>
+        </p>
+        <Button
+          onClick={() => {
+            resetPayment();
+            navigate("/");
+          }}
+        >
+          Quay lại trang chủ
+        </Button>
+      </BasisModal>
     </div>
   );
 }

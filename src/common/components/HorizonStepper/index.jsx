@@ -17,8 +17,6 @@ import StepConnector, {
 import "./globalStyle.scss";
 import { Box } from "@mui/material";
 import { memo } from "react";
-import { useImperativeHandle } from "react";
-import { forwardRef } from "react";
 
 const QontoStepIconRoot = styled("div")(({ theme, ownerState }) => ({
   color: theme.palette.mode === "dark" ? theme.palette.grey[700] : "#eaeaf0",
@@ -155,37 +153,12 @@ ColorlibStepIcon.propTypes = {
 
 const steps = ["CHỌN GHẾ", "THANH TOÁN", "KẾT QUẢ ĐẶT VÉ"];
 
-const HorizonStepper = forwardRef(({}, ref) => {
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  // useImperativeHandle
-  useImperativeHandle(ref, () => ({
-    activeStep: activeStep,
-    next() {
-      const stepsLength = steps.length;
-
-      if (activeStep === stepsLength - 1) setActiveStep(0);
-      else setActiveStep((preState) => preState + 1);
-    },
-    prev() {
-      const stepsLength = steps.length;
-
-      if (activeStep === 0) setActiveStep(stepsLength - 1);
-      else setActiveStep((prevState) => prevState - 1);
-    },
-    toFirst() {
-      setActiveStep(0);
-    },
-    toLast() {
-      setActiveStep(steps.length - 1);
-    },
-  }));
-
+const HorizonStepper = ({ stepper }) => {
   return (
     <Stack sx={{ width: "100%" }} spacing={4}>
       <Stepper
         alternativeLabel
-        activeStep={activeStep}
+        activeStep={stepper.currentStep}
         connector={<ColorlibConnector />}
         className="horizonStepper"
       >
@@ -200,6 +173,6 @@ const HorizonStepper = forwardRef(({}, ref) => {
       </Stepper>
     </Stack>
   );
-});
+};
 
 export default memo(HorizonStepper);

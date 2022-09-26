@@ -7,8 +7,8 @@ const createOutlet = (condition) => {
   };
 };
 
-const isLogin = !!localStorage.getItem("token");
+const isLogin = () => !!localStorage.getItem("token");
 
 export const PublicOutlet = () => <Outlet />;
-export const AuthOutlet = createOutlet(!isLogin);
-export const PrivateOutlet = createOutlet(isLogin);
+export const AuthOutlet = createOutlet(!isLogin());
+export const PrivateOutlet = createOutlet(isLogin());

@@ -85,7 +85,7 @@ const Header = () => {
     }
 
     setAccountSettings([
-      { title: userProfile.hoTen, path: "/signIn" },
+      { title: userProfile.hoTen, path: "/userInfo" },
       {
         title: "Đăng xuất",
         onClick() {

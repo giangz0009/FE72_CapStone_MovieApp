@@ -24,7 +24,7 @@ function BasicModal(
     costumeStyle,
     children,
     isHasCloseBtn = true,
-    handleOnClose,
+    handleOnClose = () => {},
     isActiveOutClickEvent = true,
   },
   ref

@@ -5,7 +5,10 @@ import BasicForm from "common/components/BasisForm";
 import BasicModal from "hoc/BasisModal";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSetSignInAction } from "features/Authenticaion/action";
+import {
+  fetchGetProfileAction,
+  fetchSetSignInAction,
+} from "features/Authenticaion/action";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -37,7 +40,10 @@ function SignIn() {
     const res = await dispatch(fetchSetSignInAction(values));
     setSubmitting(false);
     if (typeof res === "string") setNotify(res);
-    else setNotify("Chúc mừng! Đăng nhập thành công");
+    else {
+      setNotify("Chúc mừng! Đăng nhập thành công");
+      dispatch(fetchGetProfileAction);
+    }
     refNotifyModal.current.open();
   }, []);
 

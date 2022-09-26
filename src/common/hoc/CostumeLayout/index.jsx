@@ -1,23 +1,15 @@
-import Footer from "common/components/Footer";
-import Header from "common/components/Header";
 import { fetchGetProfileAction } from "features/Authenticaion/action";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-function DefaultLayout({ children }) {
+function CostumeLayout({ children }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchGetProfileAction);
   });
 
-  return (
-    <>
-      <Header />
-      {children}
-      <Footer />
-    </>
-  );
+  return <>{children}</>;
 }
 
-export default DefaultLayout;
+export default CostumeLayout;

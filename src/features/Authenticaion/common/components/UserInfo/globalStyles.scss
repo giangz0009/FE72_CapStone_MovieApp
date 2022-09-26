@@ -1,0 +1,28 @@
+@import "assets/scss/Helper/_variable.scss";
+
+.userInfo {
+  margin-top: 8rem;
+  padding-bottom: 6rem;
+  .userInfoTabsList {
+    .userInfoTabsListWrap {
+      & > .MuiTabs-scroller {
+        & > .MuiTabs-flexContainer {
+          .userInfoTabItem {
+            font-size: 1.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: $c-theme-heading;
+            transition: 0.4s;
+            &.Mui-selected {
+              color: $primary-color;
+              transform: scale(1.1);
+            }
+          }
+        }
+        & > .MuiTabs-indicator {
+          display: none;
+        }
+      }
+    }
+  }
+}

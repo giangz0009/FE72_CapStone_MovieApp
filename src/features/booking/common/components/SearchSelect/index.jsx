@@ -21,6 +21,7 @@ import style from "./style.module.scss";
 import instance from "app/instance";
 import dateTime from "common/utils/dateJs";
 import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
 
 const HtmlTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -57,6 +58,8 @@ function SearchSelect() {
 
   // useSelector
   const topFilms = useSelector((state) => state.booking.moviesList);
+  // useNavigate
+  const navigate = useNavigate();
 
   // useEffect
   useEffect(() => {
@@ -368,6 +371,8 @@ function SearchSelect() {
               className={clsx(style.submitBtn, [
                 { [style.active]: !lodashIsEmpty(showTimes) },
               ])}
+              disabled={lodashIsEmpty(showTimes)}
+              onClick={() => navigate(`/booking/${showTimes}`)}
             >
               Đặt vé
             </button>

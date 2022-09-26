@@ -19,12 +19,15 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
 import BasicModal from "hoc/BasisModal";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Carousel() {
   // useRef
   const modalRef = useRef();
   // useDispatch
   const dispatch = useDispatch();
+  // useNavigate
+  const navigate = useNavigate();
   //useSelector
   const banners = useSelector((state) => state.booking.banners);
   const selectedMovie = useSelector((state) => state.booking.selectedMovie);
@@ -61,14 +64,18 @@ export default function Carousel() {
             }}
           >
             <div className={style.wrapper}>
-              <div className={style.shadowLayout}>
-                <Button
-                  className={style.playBtn}
-                  variant="outlined"
-                  startIcon={<PlayArrowIcon />}
-                  onClick={() => handleOpenModal(banner.maPhim)}
-                ></Button>
-              </div>
+              <div
+                className={style.shadowLayout}
+                onClick={() => navigate(`/details/${banner.maPhim}`)}
+              ></div>
+              <Button
+                className={style.playBtn}
+                variant="outlined"
+                startIcon={<PlayArrowIcon />}
+                onClick={() => handleOpenModal(banner.maPhim)}
+              >
+                asd
+              </Button>
             </div>
           </SwiperSlide>
         ))}

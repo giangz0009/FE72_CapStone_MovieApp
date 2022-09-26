@@ -17,6 +17,7 @@ import StepConnector, {
 import "./globalStyle.scss";
 import { Box } from "@mui/material";
 import { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
 const QontoStepIconRoot = styled("div")(({ theme, ownerState }) => ({
   color: theme.palette.mode === "dark" ? theme.palette.grey[700] : "#eaeaf0",
@@ -154,6 +155,8 @@ ColorlibStepIcon.propTypes = {
 const steps = ["CHỌN GHẾ", "THANH TOÁN", "KẾT QUẢ ĐẶT VÉ"];
 
 const HorizonStepper = ({ stepper }) => {
+  const navigate = useNavigate();
+
   return (
     <Stack sx={{ width: "100%" }} spacing={4}>
       <Stepper
@@ -168,7 +171,7 @@ const HorizonStepper = ({ stepper }) => {
           </Step>
         ))}
         <Box className="userIcon" sx={{ flex: 1, paddingInline: 8 }}>
-          <AccountCircleRoundedIcon />
+          <AccountCircleRoundedIcon onClick={() => navigate("/userInfo")} />
         </Box>
       </Stepper>
     </Stack>

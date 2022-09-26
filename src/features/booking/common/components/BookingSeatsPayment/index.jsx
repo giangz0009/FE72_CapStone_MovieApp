@@ -136,8 +136,11 @@ const BookingSeatsPayment = forwardRef(
       if (!movieInfo || !userProfile) return <Loading />;
 
       const { tenPhim, tenCumRap, ngayChieu, gioChieu, tenRap } = movieInfo;
+      const splitNgayChieu = ngayChieu.split("/");
       const convertNgayChieuToDayOfWeek = dateTime(
-        new Date(ngayChieu).toISOString()
+        new Date(
+          `${splitNgayChieu[1]}/${splitNgayChieu[0]}/${splitNgayChieu[2]}`
+        ).toISOString()
       ).getDayOfWeek();
 
       const { email, soDT } = userProfile;

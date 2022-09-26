@@ -38,8 +38,12 @@ function ChooseSeats({ resetPayment }) {
     if (!movieInfo) return <Loading />;
 
     const { tenCumRap, gioChieu, ngayChieu, tenRap } = movieInfo;
+    const splitNgayChieu = ngayChieu.split("/");
+
     const convertNgayChieuToDayOfWeek = dateTime(
-      new Date(ngayChieu).toISOString()
+      new Date(
+        `${splitNgayChieu[1]}/${splitNgayChieu[0]}/${splitNgayChieu[2]}`
+      ).toISOString()
     ).getDayOfWeek();
     const tenCumRapSplit = tenCumRap.split(" - ");
 

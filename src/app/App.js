@@ -6,8 +6,9 @@ import "./App.css";
 import PageLoading from "common/components/PageLoading";
 import { appActionTypes } from "./actions";
 import DefaultLayout from "common/hoc/DefaultLayout";
-import { fetchGetProfileAction } from "features/Authenticaion/action";
 import BookingSeat from "features/booking/common/components/BookingSeats";
+import UserInfo from "features/Authenticaion/common/components/UserInfo";
+import CostumeLayout from "common/hoc/CostumeLayout";
 
 // Route Components
 const Home = lazy(() => import("features/booking/pages/Home"));
@@ -32,10 +33,6 @@ const App = () => {
     if (movieThemeIsDark) document.body.dataset.theme = "dark";
   });
 
-  useEffect(() => {
-    dispatch(fetchGetProfileAction);
-  }, [dispatch]);
-
   return (
     <div id="app">
       <Suspense fallback={<PageLoading />}>
@@ -56,9 +53,24 @@ const App = () => {
               </DefaultLayout>
             }
           />
+          <Route
+            path="/userInfo"
+            element={
+              <DefaultLayout>
+                <UserInfo />
+              </DefaultLayout>
+            }
+          />
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/signUp" element={<SignUp />} />
-          <Route path="/booking/:movieScheduleId" element={<BookingSeat />} />
+          <Route
+            path="/booking/:movieScheduleId"
+            element={
+              <CostumeLayout>
+                <BookingSeat />
+              </CostumeLayout>
+            }
+          />
           {/* Others Link */}
           <Route
             path="*"

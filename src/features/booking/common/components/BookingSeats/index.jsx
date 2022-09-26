@@ -88,6 +88,8 @@ function BookingSeat() {
 
   //   useEffect
   useEffect(() => {
+    dispatch(bookingActionsType.setSelectedSeats([]));
+    dispatch(bookingActionsType.setPaymentType({}));
     dispatch(fetchSetTicketsList(movieScheduleId));
   }, [dispatch, movieScheduleId]);
 
@@ -148,7 +150,7 @@ function BookingSeat() {
             </Button>
             <h3>{getCurrentStepLabel()}</h3>
             <Button>
-              <AccountCircleIcon />
+              <AccountCircleIcon onClick={() => navigate("/userInfo")} />
             </Button>
           </Box>
         </Paper>

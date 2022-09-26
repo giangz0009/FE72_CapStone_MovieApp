@@ -9,6 +9,7 @@ import DefaultLayout from "common/hoc/DefaultLayout";
 import BookingSeat from "features/booking/common/components/BookingSeats";
 import UserInfo from "features/Authenticaion/common/components/UserInfo";
 import CostumeLayout from "common/hoc/CostumeLayout";
+import { AuthOutlet, PrivateOutlet, PublicOutlet } from "./routeGuard";
 
 // Route Components
 const Home = lazy(() => import("features/booking/pages/Home"));
@@ -37,49 +38,62 @@ const App = () => {
     <div id="app">
       <Suspense fallback={<PageLoading />}>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <DefaultLayout>
-                <Home />
-              </DefaultLayout>
-            }
-          />
-          <Route
-            path="/details/:movieId"
-            element={
-              <DefaultLayout>
-                <Details />
-              </DefaultLayout>
-            }
-          />
-          <Route
-            path="/userInfo"
-            element={
-              <DefaultLayout>
-                <UserInfo />
-              </DefaultLayout>
-            }
-          />
-          <Route path="/signIn" element={<SignIn />} />
-          <Route path="/signUp" element={<SignUp />} />
-          <Route
-            path="/booking/:movieScheduleId"
-            element={
-              <CostumeLayout>
-                <BookingSeat />
-              </CostumeLayout>
-            }
-          />
-          {/* Others Link */}
-          <Route
-            path="*"
-            element={
-              <DefaultLayout>
-                <PageNotFound />
-              </DefaultLayout>
-            }
-          />
+          <Route path="/" element={<PublicOutlet />}>
+            <Route
+              index
+              element={
+                <DefaultLayout>
+                  <Home />
+                </DefaultLayout>
+              }
+            />
+            <Route
+              path="details/:movieId"
+              element={
+                <DefaultLayout>
+                  <Details />
+                </DefaultLayout>
+              }
+            />
+            <Route path="signIn" element={<AuthOutlet navigateTo="/" />}>
+              <Route index element={<SignIn />} />
+            </Route>
+            <Route path="signUp" element={<SignUp />} />
+            <Route
+              path="*"
+              element={
+                <DefaultLayout>
+                  <PageNotFound />
+                </DefaultLayout>
+              }
+            />
+            <Route
+              path="booking"
+              element={<PrivateOutlet navigateTo="/signIn" />}
+            >
+              <Route
+                path=":movieScheduleId"
+                element={
+                  <CostumeLayout>
+                    <BookingSeat />
+                  </CostumeLayout>
+                }
+              />
+            </Route>
+            <Route
+              path="userInfo"
+              element={<PrivateOutlet navigateTo="/signIn" />}
+            >
+              <Route
+                index
+                element={
+                  <DefaultLayout>
+                    <UserInfo />
+                  </DefaultLayout>
+                }
+              />
+            </Route>
+          </Route>
         </Routes>
       </Suspense>
     </div>

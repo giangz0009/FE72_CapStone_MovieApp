@@ -190,7 +190,7 @@ function Details() {
             <p>{format}</p>
           </Box>
           <Box>
-            <p>Quốc giá: </p>
+            <p>Quốc gia: </p>
             <p>{nation}</p>
           </Box>
         </Box>

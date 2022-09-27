@@ -1,0 +1,24 @@
+@import "assets/scss/Helper/_variable.scss";
+
+.btnScrollToTop {
+  position: fixed !important;
+  z-index: 999;
+  bottom: 1rem !important;
+  right: 1rem !important;
+  padding: 1rem !important;
+  border-radius: 50% !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s;
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
+  svg {
+    font-size: 5rem;
+    color: $primary-color;
+  }
+}

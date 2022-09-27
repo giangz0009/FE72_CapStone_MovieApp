@@ -249,6 +249,9 @@ function SearchSelect() {
                           variant="contained"
                           title="Chi tiết"
                           size="large"
+                          onClick={() => {
+                            navigate(`/details/${option.maPhim}`);
+                          }}
                         >
                           Chi tiết
                         </Button>

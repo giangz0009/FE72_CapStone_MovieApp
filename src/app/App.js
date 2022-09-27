@@ -9,7 +9,9 @@ import DefaultLayout from "common/hoc/DefaultLayout";
 import BookingSeat from "features/booking/common/components/BookingSeats";
 import UserInfo from "features/Authenticaion/common/components/UserInfo";
 import CostumeLayout from "common/hoc/CostumeLayout";
-import { AuthOutlet, PrivateOutlet, PublicOutlet } from "./routeGuard";
+import { PublicOutlet } from "./routeGuard";
+import AuthOutlet from "./AuthOutlet";
+import PrivateOutlet from "./PrivateOutlet";
 
 // Route Components
 const Home = lazy(() => import("features/booking/pages/Home"));

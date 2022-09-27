@@ -30,7 +30,9 @@ function UserUpdateForm({
       setConfirmNotify(res);
       refConfirmModal.current.open();
     } else {
-      const res = await dispatch(fetchChangeProfile(values.matKhau));
+      const res = await dispatch(
+        fetchChangeProfile({ matKhau: values.matKhau })
+      );
       setConfirmNotify(res);
       refConfirmModal.current.open();
     }

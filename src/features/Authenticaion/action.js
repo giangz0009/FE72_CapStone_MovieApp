@@ -5,6 +5,39 @@ const authActionType = {
   setProfile: createAction("Authentication/SET_PROFILE"),
 };
 
+const fetchChangeProfile = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      const currProfile = { ...getState().authentication.profile };
+      delete currProfile.loaiNguoiDung;
+      delete currProfile.thongTinDatVe;
+
+      const res = await instance.request({
+        url: "/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+        method: "PUT",
+        data: {
+          ...currProfile,
+          ...data,
+        },
+      });
+
+      dispatch(fetchGetProfileAction);
+
+      return {
+        heading: "Thông báo",
+        content: "Cập nhật thành công!",
+        cancelBtn: "Ok",
+      };
+    } catch (error) {
+      return {
+        heading: "Thông báo",
+        content: "Có lỗi xảy ra!",
+        cancelBtn: "Ok",
+      };
+    }
+  };
+};
+
 const fetchSetSignInAction = (data) => {
   return async (dispatch) => {
     try {
@@ -45,4 +78,9 @@ const fetchGetProfileAction = async (dispatch) => {
   }
 };
 
-export { authActionType, fetchSetSignInAction, fetchGetProfileAction };
+export {
+  authActionType,
+  fetchSetSignInAction,
+  fetchGetProfileAction,
+  fetchChangeProfile,
+};

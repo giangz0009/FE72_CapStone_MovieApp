@@ -12,7 +12,8 @@ import "./globalStyles.scss";
 
 function BasicConfirmModal(
   {
-    handleClickSubmit,
+    handleClickSubmit = () => {},
+    handleOnClose = () => {},
     isHaveSubmitBtn = true,
     confirmContent = {
       heading: "Thống báo",
@@ -39,6 +40,7 @@ function BasicConfirmModal(
   };
 
   const handleClose = () => {
+    handleOnClose();
     setOpen(false);
   };
   const handleSubmit = () => {

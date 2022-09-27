@@ -59,7 +59,7 @@ function Authentication({
           <MenuItem
             key={index}
             onClick={() => handleOnClickMenuItem(setting)}
-            sx={{ justifyContent: "flex-end" }}
+            sx={{ justifyContent: "center" }}
           >
             <Typography>{setting.title}</Typography>
           </MenuItem>

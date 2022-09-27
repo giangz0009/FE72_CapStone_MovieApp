@@ -7,6 +7,7 @@ function CostumeLayout({ children }) {
 
   useEffect(() => {
     dispatch(fetchGetProfileAction);
+    window.scrollTo(0, 0);
   });
 
   return <>{children}</>;

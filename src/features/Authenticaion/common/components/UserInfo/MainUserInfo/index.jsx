@@ -1,6 +1,7 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Box,
+  Button,
   FilledInput,
   FormControl,
   IconButton,
@@ -9,15 +10,116 @@ import {
 } from "@mui/material";
 import Loading from "common/components/Loading";
 import React, { memo, useState } from "react";
+import { useCallback } from "react";
+import * as Yup from "yup";
 
 import "./globalStyle.scss";
+import UserUpdateForm from "./UserUpdateForm";
 
 function MainUserInfo({ userInfo }) {
   // useState
   const [isUpdateForm, setIsUpdateForm] = useState(false);
+  const [formData, setFormData] = useState([]);
+  const [formInitialValues, setFormInitialValues] = useState({});
+  const [formValidationSchema, setFormValidationSchema] = useState({});
   const [isShowPassword, setIsShowPassword] = useState(false);
 
+  // useCallback
+  const cbSetIsUpdateForm = useCallback((value) => setIsUpdateForm(value));
+
   //   handle functions
+  const handleOnclickUpdatePassword = () => {
+    setIsUpdateForm(true);
+
+    setFormData([
+      {
+        title: "Mật khẩu hiện tại:",
+        name: "currentPass",
+        type: "password",
+        isPassword: true,
+      },
+      {
+        title: "Mật khẩu mới:",
+        name: "newPass",
+        type: "password",
+        isPassword: true,
+      },
+      {
+        title: "Mật khẩu xác nhận:",
+        name: "matKhau",
+        type: "password",
+        isPassword: true,
+      },
+    ]);
+
+    setFormValidationSchema(
+      Yup.object({
+        currentPass: Yup.string()
+          .required("*Vui lòng nhập mật khẩu hiện tại!")
+          .oneOf([userInfo.matKhau], "*Mật khẩu hiện tại không đúng!"),
+        newPass: Yup.string()
+          .required("*Vui lòng nhập mật khẩu mới!")
+          .min(6, "*Mật khẩu phải có tối thiểu 6 ký tự"),
+        matKhau: Yup.string()
+          .required("*Vui lòng nhập mật khẩu xác nhận!")
+          .oneOf(
+            [Yup.ref("newPass"), null],
+            "*Mật khẩu xác nhận chưa chính xác!"
+          ),
+      })
+    );
+
+    setFormInitialValues({
+      currentPass: "",
+      newPass: "",
+      matKhau: "",
+    });
+  };
+
+  const handleOnclickUpdateInfo = () => {
+    // Open update form & set data + schema
+    setIsUpdateForm(true);
+
+    setFormData([
+      {
+        title: "Họ và tên:",
+        name: "hoTen",
+        type: "text",
+      },
+      {
+        title: "email:",
+        name: "email",
+        type: "text",
+      },
+      {
+        title: "Số điện thoại:",
+        name: "soDT",
+        type: "text",
+      },
+    ]);
+
+    setFormValidationSchema(
+      Yup.object({
+        hoTen: Yup.string().required("*Họ và tên không được bỏ trống!"),
+        email: Yup.string()
+          .required("*Email không được bỏ trống!")
+          .email("*Vui lòng nhập đúng định dạng email (*@*.* VD: vd@vd.com)"),
+        soDT: Yup.string()
+          .required("*Số điện thoại không được bỏ trống!")
+          .matches(
+            /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
+            "*Số điện thoại không đúng định dạng"
+          )
+          .min(10, "*Số điện thoại phải có ít nhất 10 ký tự"),
+      })
+    );
+
+    setFormInitialValues({
+      hoTen: userInfo.hoTen,
+      soDT: userInfo.soDT,
+      email: userInfo.email,
+    });
+  };
 
   //   render functions
   const renderUserInfo = () => {
@@ -68,11 +170,28 @@ function MainUserInfo({ userInfo }) {
           <label htmlFor="soDT">Số điện thoại:</label>
           <input id="soDT" type="text" value={soDT} readOnly />
         </Box>
+        <Box className="group">
+          <Button onClick={handleOnclickUpdateInfo}>Cập nhật thông tin</Button>
+          <Button onClick={handleOnclickUpdatePassword}>Đổi mật khẩu</Button>
+        </Box>
       </Box>
     );
   };
 
-  return <Box className="mainUserInfo">{renderUserInfo()}</Box>;
+  return (
+    <Box className="mainUserInfo">
+      {!isUpdateForm ? (
+        renderUserInfo()
+      ) : (
+        <UserUpdateForm
+          initialValues={formInitialValues}
+          validationSchema={formValidationSchema}
+          formData={formData}
+          closeFormOnSubmit={cbSetIsUpdateForm}
+        />
+      )}
+    </Box>
+  );
 }
 
 export default memo(MainUserInfo);

@@ -3,16 +3,14 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-function AuthOutlet({ navigateTo }) {
+function AuthOutlet({ navigateTo, children }) {
   const [isLogin, setIsLogin] = useState(!localStorage.getItem("token"));
 
   useEffect(() => {
     setIsLogin(!localStorage.getItem("token"));
   }, [localStorage.getItem("token")]);
 
-  if (isLogin) return <Outlet />;
-
-  return <Navigate to={navigateTo} />;
+  return isLogin ? children : <Navigate to={navigateTo} />;
 }
 
 export default memo(AuthOutlet);

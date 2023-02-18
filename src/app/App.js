@@ -12,6 +12,7 @@ import CostumeLayout from "common/hoc/CostumeLayout";
 import { PublicOutlet } from "./routeGuard";
 import AuthOutlet from "./AuthOutlet";
 import PrivateOutlet from "./PrivateOutlet";
+import MainRoute from "./MainRoute";
 
 // Route Components
 const Home = lazy(() => import("features/booking/pages/Home"));
@@ -39,64 +40,7 @@ const App = () => {
   return (
     <div id="app">
       <Suspense fallback={<PageLoading />}>
-        <Routes>
-          <Route path="/" element={<PublicOutlet />}>
-            <Route
-              index
-              element={
-                <DefaultLayout>
-                  <Home />
-                </DefaultLayout>
-              }
-            />
-            <Route
-              path="details/:movieId"
-              element={
-                <DefaultLayout>
-                  <Details />
-                </DefaultLayout>
-              }
-            />
-            <Route path="signIn" element={<AuthOutlet navigateTo="/" />}>
-              <Route index element={<SignIn />} />
-            </Route>
-            <Route path="signUp" element={<SignUp />} />
-            <Route
-              path="*"
-              element={
-                <DefaultLayout>
-                  <PageNotFound />
-                </DefaultLayout>
-              }
-            />
-            <Route
-              path="booking"
-              element={<PrivateOutlet navigateTo="/signIn" />}
-            >
-              <Route
-                path=":movieScheduleId"
-                element={
-                  <CostumeLayout>
-                    <BookingSeat />
-                  </CostumeLayout>
-                }
-              />
-            </Route>
-            <Route
-              path="userInfo"
-              element={<PrivateOutlet navigateTo="/signIn" />}
-            >
-              <Route
-                index
-                element={
-                  <DefaultLayout>
-                    <UserInfo />
-                  </DefaultLayout>
-                }
-              />
-            </Route>
-          </Route>
-        </Routes>
+        <MainRoute />
       </Suspense>
     </div>
   );
